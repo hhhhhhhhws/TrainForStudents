@@ -66,8 +66,6 @@
 		0A56E39C1F5D8A2300EF9855 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A56E39B1F5D8A2300EF9855 /* CoreTelephony.framework */; };
 		0A56E3A01F5D92C700EF9855 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A56E39F1F5D92C700EF9855 /* libz.tbd */; };
 		0A56E3A21F5D92CF00EF9855 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A56E3A11F5D92CF00EF9855 /* SystemConfiguration.framework */; };
-		0A56E3AC1F5D941D00EF9855 /* jcore-ios-1.1.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A56E3A91F5D941D00EF9855 /* jcore-ios-1.1.5.a */; };
-		0A56E3AD1F5D941D00EF9855 /* jpush-ios-3.0.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A56E3AA1F5D941D00EF9855 /* jpush-ios-3.0.6.a */; };
 		0A56E3AF1F5D944100EF9855 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A56E3AE1F5D944100EF9855 /* libresolv.tbd */; };
 		0A644D5B1EFD0A5A009025DD /* OutlineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A644D5A1EFD0A5A009025DD /* OutlineItem.swift */; };
 		0A644D5D1EFD0A9A009025DD /* OutlineItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A644D5C1EFD0A9A009025DD /* OutlineItem.xib */; };
@@ -279,12 +277,8 @@
 		0A44131B1EE9BD4100BAB679 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		0A44131C1EEAC64F00BAB679 /* BMCustomPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BMCustomPlayer.swift; path = ../BMCustomPlayer.swift; sourceTree = "<group>"; };
 		0A56E39B1F5D8A2300EF9855 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		0A56E39D1F5D8BEE00EF9855 /* jpush-ios-3.0.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.0.6.a"; sourceTree = "<group>"; };
 		0A56E39F1F5D92C700EF9855 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		0A56E3A11F5D92CF00EF9855 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		0A56E3A91F5D941D00EF9855 /* jcore-ios-1.1.5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-1.1.5.a"; sourceTree = "<group>"; };
-		0A56E3AA1F5D941D00EF9855 /* jpush-ios-3.0.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.0.6.a"; sourceTree = "<group>"; };
-		0A56E3AB1F5D941D00EF9855 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		0A56E3AE1F5D944100EF9855 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		0A644D5A1EFD0A5A009025DD /* OutlineItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineItem.swift; sourceTree = "<group>"; };
 		0A644D5C1EFD0A9A009025DD /* OutlineItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutlineItem.xib; sourceTree = "<group>"; };
@@ -380,6 +374,8 @@
 		0AC3BCAC1EE97F2400227194 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0AC3BCAE1EE9B56E00227194 /* VideoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoController.swift; sourceTree = "<group>"; };
 		0AC49F611F347D290028A65C /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		0AD65A1420108C650069DDC0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		0AD65A1620108E720069DDC0 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		0AEBF3BF1F207EB200520E27 /* 结业.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "结业.png"; sourceTree = "<group>"; };
 		0AEBF3C01F207EB200520E27 /* 年度.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "年度.png"; sourceTree = "<group>"; };
 		0AEBF3C41F20804700520E27 /* 出科.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "出科.png"; sourceTree = "<group>"; };
@@ -485,11 +481,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A56E3AF1F5D944100EF9855 /* libresolv.tbd in Frameworks */,
-				0A56E3AD1F5D941D00EF9855 /* jpush-ios-3.0.6.a in Frameworks */,
 				0A56E3A21F5D92CF00EF9855 /* SystemConfiguration.framework in Frameworks */,
 				0A56E3A01F5D92C700EF9855 /* libz.tbd in Frameworks */,
 				0A56E39C1F5D8A2300EF9855 /* CoreTelephony.framework in Frameworks */,
-				0A56E3AC1F5D941D00EF9855 /* jcore-ios-1.1.5.a in Frameworks */,
 				351DE4A8F35C513E54679BCA /* Pods_TrainForStudents.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,16 +506,6 @@
 				0A42F81A1F14C13B001DF281 /* LoginInfo.swift */,
 			);
 			name = model;
-			sourceTree = "<group>";
-		};
-		0A56E3A31F5D930400EF9855 /* JPush */ = {
-			isa = PBXGroup;
-			children = (
-				0A56E3A91F5D941D00EF9855 /* jcore-ios-1.1.5.a */,
-				0A56E3AA1F5D941D00EF9855 /* jpush-ios-3.0.6.a */,
-				0A56E3AB1F5D941D00EF9855 /* JPUSHService.h */,
-			);
-			name = JPush;
 			sourceTree = "<group>";
 		};
 		0A644D591EFD08BC009025DD /* MyViews */ = {
@@ -809,7 +793,6 @@
 		0AC3BC641EE94C9C00227194 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				0A56E3A31F5D930400EF9855 /* JPush */,
 				0A15D5121F0BF5E900908B7F /* Refresh */,
 				0AC3BC931EE94D9200227194 /* QrScanner */,
 				0A42F8221F179EDA001DF281 /* DateUtil.swift */,
@@ -1016,10 +999,11 @@
 		B707CDB3DC26068F3BFED540 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0AD65A1620108E720069DDC0 /* CoreFoundation.framework */,
+				0AD65A1420108C650069DDC0 /* CFNetwork.framework */,
 				0A56E3AE1F5D944100EF9855 /* libresolv.tbd */,
 				0A56E3A11F5D92CF00EF9855 /* SystemConfiguration.framework */,
 				0A56E39F1F5D92C700EF9855 /* libz.tbd */,
-				0A56E39D1F5D8BEE00EF9855 /* jpush-ios-3.0.6.a */,
 				0A56E39B1F5D8A2300EF9855 /* CoreTelephony.framework */,
 				734644A1ED16B32D9EAD775A /* Pods_TrainForStudents.framework */,
 			);
@@ -1515,11 +1499,54 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/TrainForStudents",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"jcore-ios-1.1.3\"",
+					"-l\"jpush-ios-3.0.5\"",
+					"-l\"resolv\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"BMPlayer\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GTMRefresh\"",
+					"-framework",
+					"\"NVActivityIndicatorView\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-framework",
+					"\"SwiftCharts\"",
+					"-framework",
+					"\"SwiftDate\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"UserNotifications\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiuhua.TrainForStudents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/huangweisheng/Downloads/TrainForStudentiOS-master/TrainForStudents/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Applications/myProject/TrainForStudents/TrainForStudents/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -1540,11 +1567,55 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/TrainForStudents",
 				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"jcore-ios-1.1.3\"",
+					"-l\"jpush-ios-3.0.5\"",
+					"-l\"resolv\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"BMPlayer\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GTMRefresh\"",
+					"-framework",
+					"\"NVActivityIndicatorView\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-framework",
+					"\"SwiftCharts\"",
+					"-framework",
+					"\"SwiftDate\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"UserNotifications\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiuhua.TrainForStudents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/huangweisheng/Downloads/TrainForStudentiOS-master/TrainForStudents/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Applications/myProject/TrainForStudents/TrainForStudents/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};

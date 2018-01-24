@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.7</string>
+	<string>1.0.9</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationCategoryType</key>
@@ -30,9 +30,9 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>此 App 需要您的同意才能调用摄像头功能</string>
+	<string>此 App 需要您的同意才能调用摄像头扫描二维码</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>此 App 需要您的同意才能读取媒体资料库</string>
+	<string>此 App 需要您的同意才能读取媒体资料库上传图片</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

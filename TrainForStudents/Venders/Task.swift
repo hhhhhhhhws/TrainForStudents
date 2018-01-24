@@ -20,7 +20,7 @@ class Task: NSObject {
                     NSLog("无法获取到App版本信息")
                     return
             }
-            print(json)
+            //print(json)
             
             if versionInt > thisVersionInt {
                 // 在下面的回调中可以做一些如弹窗等操作提示用户更新

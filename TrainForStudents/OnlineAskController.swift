@@ -30,15 +30,24 @@ class OnlineAskController: MyBaseUIViewController {
     //问题 collection
     @IBOutlet weak var onlineAskCollection: UICollectionView!
     
+    var tagGtr = UITapGestureRecognizer()
+    var webView = UIWebView()
+    
     let askView = OnlineAskCollectionView()
     var viewTitlte = "在线提问"
     var btn_toggle = true
+    /// 当前教材是不是视频
+    var isVedio = false
     
     //按钮的集合
     var buttonGroup = [UIButton]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.isMultipleTouchEnabled = false
+        tagGtr.delegate = self
+        
         
         txt_askContnt.delegate = self
         
@@ -57,6 +66,7 @@ class OnlineAskController: MyBaseUIViewController {
         let url = URL(string:SERVER_PORT + "../" + videoInfo["url"].stringValue)
         
         if videoInfo["typename"].stringValue == "VIDEO"{
+            isVedio = true
             player.parentView = self
             player.markView = view.viewWithTag(20001)
             
@@ -76,22 +86,23 @@ class OnlineAskController: MyBaseUIViewController {
             player.setVideo(resource: asset)
             
         }else{
-            let web = UIWebView(frame: player.frame)
-            web.delegate = self
-            player.superview?.addSubview(web)
+            webView = UIWebView(frame: player.frame)
+            webView.delegate = self
+            player.superview?.addSubview(webView)
             let request = URLRequest(url: url!)
-            web.loadRequest(request)
+            webView.loadRequest(request)
+            webView.addGestureRecognizer(tagGtr)
+            tagGtr.addTarget(self, action: #selector(wordFill))
             
             let lbl = UILabel()
             lbl.frame.origin = CGPoint(x: 0, y: 0)
-            lbl.frame.size = web.frame.size
+            lbl.frame.size = webView.frame.size
             lbl.text = "加载中..."
             lbl.tag = 10001
             lbl.textAlignment = .center
             lbl.font = UIFont.systemFont(ofSize: 13)
             lbl.textColor = UIColor.init(hex: "9BA6AE")
-            web.addSubview(lbl)
-            
+            webView.addSubview(lbl)
             
         }
         
@@ -100,6 +111,14 @@ class OnlineAskController: MyBaseUIViewController {
         lbl = view.viewWithTag(30001) as! UILabel
         lbl.text = "时长 \(videoInfo["howlong"].stringValue) 分钟"
         
+    }
+    
+    func wordFill (){
+        if webView.frame == player.frame{
+            webView.frame = view.frame
+        }else{
+            webView.frame = player.frame
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,7 +141,6 @@ class OnlineAskController: MyBaseUIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         //释放视频资源
         player.playerLayer?.prepareToDeinit()
-        
     }
     
     //返回
@@ -276,7 +294,18 @@ extension OnlineAskController : UIWebViewDelegate{
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        webView.viewWithTag(10001)?.isHidden = true
+        let lbl = webView.viewWithTag(10001) as! UILabel
+        lbl.isHidden = true
+        lbl.text = ""
+        
+    }
+    
+}
+
+extension OnlineAskController : UIGestureRecognizerDelegate{
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
     
 }

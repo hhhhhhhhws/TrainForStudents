@@ -37,9 +37,8 @@ class MeterialListCollectionView : MyBaseCollectionView{
         while v >= 4 {
             v = arc4random() % 10
         }
-        
+        print(json["type"].intValue)
         switch json["type"].intValue {
-//        switch v {
         case 0: //视频
             let img = cell.viewWithTag(30001) as! UIImageView
             img.image = UIImage(named: "video")
@@ -60,7 +59,13 @@ class MeterialListCollectionView : MyBaseCollectionView{
             let img = cell.viewWithTag(30001) as! UIImageView
             img.image = UIImage(named: "picture")
             break
+        case 5: //word
+            let img = cell.viewWithTag(30001) as! UIImageView
+            img.image = UIImage(named: "word")
+            break
         default:
+            let img = cell.viewWithTag(30001) as! UIImageView
+            img.image = UIImage(named: "picture")
             break
         }
         
@@ -76,10 +81,12 @@ class MeterialListCollectionView : MyBaseCollectionView{
     //cell点击
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let vc = getViewToStoryboard("onlineAskView") as! OnlineAskController
-        vc.videoInfo = jsonDataSource[indexPath.item]
-        vc.viewTitlte = "教材详情"
-        parentView?.present(vc, animated: true, completion: nil)
+        if indexPath.item < jsonDataSource.count{
+            let vc = getViewToStoryboard("onlineAskView") as! OnlineAskController
+            vc.videoInfo = jsonDataSource[indexPath.item]
+            vc.viewTitlte = "教材详情"
+            parentView?.present(vc, animated: true, completion: nil)
+        }
         
     }
     

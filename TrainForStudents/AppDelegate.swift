@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
         //let token = String.init(data: deviceToken, encoding: .)
 //        print(deviceToken.description)
         let nsData = NSData(data: deviceToken)
-        print("推送服务注册成功,token=" + nsData.description.replacingOccurrences(of: "<", with: "").replacingOccurrences(of: ">", with: "").replacingOccurrences(of: " ", with: ""))
+        //print("推送服务注册成功,token=" + nsData.description.replacingOccurrences(of: "<", with: "").replacingOccurrences(of: ">", with: "").replacingOccurrences(of: " ", with: ""))
         //47e5c3bcbcc12aea61f6653940a730124d3f42db2681a8a804922319e34fd7f8
         //47e5c3bcbcc12aea61f6653940a730124d3f42db2681a8a804922319e34fd7f8
         JPUSHService.registerDeviceToken(deviceToken)
@@ -166,7 +166,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
     @available(iOS 10.0 , *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
-        print("userInfo 10 = \(userInfo)")
+        //print("userInfo 10 = \(userInfo)")
 //        UIApplication.shared.applicationIconBadgeNumber = 0
         completionHandler([.sound , .alert])
         
@@ -176,15 +176,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
     @available(iOS 10.0 , *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
-        print("userInfo 10 = \(userInfo)")
+        //print("userInfo 10 = \(userInfo)")
         
         //处理本地消息通知
 //        center.removeAllDeliveredNotifications()
 //        center.removeAllPendingNotificationRequests()
         
-        print("bagge:\(UIApplication.shared.applicationIconBadgeNumber)")
+        //print("bagge:\(UIApplication.shared.applicationIconBadgeNumber)")
 //        UIApplication.shared.applicationIconBadgeNumber = 0
-        print("bagge:\(UIApplication.shared.applicationIconBadgeNumber)")
+        //print("bagge:\(UIApplication.shared.applicationIconBadgeNumber)")
         
     }
     
@@ -215,7 +215,7 @@ extension AppDelegate : JPUSHRegisterDelegate{
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
         JPUSHService.handleRemoteNotification(userInfo)
-        print("iOS7及以上系统，收到通知:\(userInfo)")
+        //print("iOS7及以上系统，收到通知:\(userInfo)")
         completionHandler(UIBackgroundFetchResult.newData)
         JPUSHService.setBadge(0)
         application.applicationIconBadgeNumber = 0
@@ -240,11 +240,11 @@ extension AppDelegate : JPUSHRegisterDelegate{
         //        let title = content.title;  // 推送消息的标题
         
         if (notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))!{
-            print("iOS10 前台收到远程通知:\(userInfo)")
+            //print("iOS10 前台收到远程通知:\(userInfo)")
             JPUSHService.handleRemoteNotification(userInfo)
         }else {
             // 判断为本地通知
-            print("iOS10 前台收到本地通知:\(userInfo)")
+            //print("iOS10 前台收到本地通知:\(userInfo)")
         }
         completionHandler(Int(UNAuthorizationOptions.alert.rawValue | UNAuthorizationOptions.sound.rawValue | UNAuthorizationOptions.badge.rawValue))// 需要执行这个方法，选择是否提醒用户，有badge、sound、alert三种类型可以选择设置
     }
@@ -254,7 +254,7 @@ extension AppDelegate : JPUSHRegisterDelegate{
         let userInfo = response.notification.request.content.userInfo
         
         if (response.notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))!{
-            print("iOS10 收到远程通知:\(userInfo)")
+            //print("iOS10 收到远程通知:\(userInfo)")
             JPUSHService.handleRemoteNotification(userInfo)
         }
         completionHandler()

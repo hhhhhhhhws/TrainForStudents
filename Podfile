@@ -11,7 +11,7 @@ target ’TrainForStudents’ do
   pod 'SnapKit' , '~> 3.2.0'
   pod 'BMPlayer'
   pod 'GTMRefresh'
-  #pod 'JPush'
+  pod 'JPush'
   
 
 end

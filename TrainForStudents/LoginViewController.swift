@@ -206,9 +206,10 @@ class LoginViewController : MyBaseUIViewController, UIPickerViewDataSource , UIP
                     UserDefaults.standard.set(token, forKey: LoginInfo.token.rawValue)
                     UserDefaults.standard.set(self.txt_loginId.text!, forKey: LoginInfo.loginId.rawValue)
                     //注册极光推送别名
-                    JPUSHService.setAlias(json["userkey"].stringValue, completion: nil, seq: 0)
-                    print("极光推送注册的别名:\(json["userkey"].stringValue)")
+                    JPUSHService.setAlias(json["userkey"].stringValue, callbackSelector: nil, object: 0)
+                    //print("极光推送注册的别名:\(json["userkey"].stringValue)")
                     myPresentView(self, viewName: "tabBarView")
+                    
                 }else{
                     myAlert(self, message: json["msg"].stringValue)
                 }
