@@ -27,12 +27,11 @@ class HistoryExamCollectionView : MyBaseCollectionView{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellName, for: indexPath)
         
         var lbl = cell.viewWithTag(10001) as? UILabel
-        lbl?.text = json["tasktitle"].stringValue
+        lbl?.text = json["exercisestitle"].stringValue
         lbl = cell.viewWithTag(20001) as? UILabel
         lbl?.text = "考试时间  \(json["starttime"].stringValue)"
         lbl = cell.viewWithTag(20002) as? UILabel
         lbl?.text = "\(json["exercisesscore"].intValue)"
-        
         
         return cell
         

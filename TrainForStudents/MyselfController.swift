@@ -21,6 +21,8 @@ class MyselfController: MyBaseUIViewController {
     
     let selfView = MyselfCollectionView()
     
+    var personId = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,6 +69,15 @@ class MyselfController: MyBaseUIViewController {
                 
                 let json=JSON(responseJson)
                 if json["code"].stringValue == "1"{
+                    
+                    //缓存用户基础信息
+                    UserDefaults.User.set(value: json["data"]["personid"].stringValue, forKey: .personId)
+                    UserDefaults.User.set(value: json["data"]["jobnum"].stringValue, forKey: .jobNum)
+                    UserDefaults.User.set(value: json["data"]["personname"].stringValue, forKey: .personName)
+                    UserDefaults.User.set(value: json["data"]["subjectname"].stringValue, forKey: .majorName)
+                    UserDefaults.User.set(value: json["data"]["highestdegree"].stringValue, forKey: .highestDegree)
+                    UserDefaults.User.set(value: json["data"]["phoneno"].stringValue, forKey: .phoneNo)
+                    
                     self.selfView.jsonDataSource = json["data"]
                     self.selfCollection.reloadData()
                     self.selfCollection.endRefreshing(isSuccess: true)

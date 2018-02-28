@@ -63,6 +63,13 @@ class ExamViewController : MyBaseUIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        //读取应用中缓存的答案
+        let dic = UserDefaults.Exam.any(forKey: .answerDic)
+        if dic != nil{
+            answerDic = dic as! [String : Dictionary<String, String>]
+        }
+        
+        
         currentType = exercises[typeIndex]
         
         //初始化题型标题
@@ -79,13 +86,28 @@ class ExamViewController : MyBaseUIViewController{
         
     }
     
-    
+    ///返回按钮
     @IBAction func btn_back_inside(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        
+        myConfirm(self, message:"是否退出考试?" ,
+                  okHandler:{action in
+                    
+                // 将当前答案保存到应用缓存中
+                UserDefaults.Exam.set(value: self.answerDic, forKey: .answerDic)
+                self.dismiss(animated: true, completion: nil)
+                    
+        } , cancelHandler:{action in
+            
+        })
+        
     }
     
     //上一题
     @IBAction func btn_prev_inside(_ sender: UIButton) {
+        
+        // 将当前答案保存到应用缓存中
+        UserDefaults.Exam.set(value: answerDic, forKey: .answerDic)
+        
         questionIndex -= 1
         //如果已是当前题型最后一题 则切换到下一题型
         if questionIndex < 0{
@@ -106,6 +128,10 @@ class ExamViewController : MyBaseUIViewController{
     
     //下一题
     @IBAction func btn_next_inside(_ sender: UIButton) {
+        
+        // 将当前答案保存到应用缓存中
+        UserDefaults.Exam.set(value: answerDic, forKey: .answerDic)
+        
         questionIndex += 1
         //如果已是当前题型最后一题 则切换到下一题型
         if questionIndex >= currentType["questions"].arrayValue.count{
@@ -143,6 +169,7 @@ class ExamViewController : MyBaseUIViewController{
         
     }
     
+    //提交考试答案
     func submitAnswer(){
         MBProgressHUD.showAdded(to: self.view, animated: true)
         var anwserList = [Dictionary<String, String>]()
@@ -156,9 +183,10 @@ class ExamViewController : MyBaseUIViewController{
         if isTheoryExam {
             url = SERVER_PORT + "rest/exercises/theoryCommitPaper.do"
         }
-        print(exerciseId,taskId)
-        print(anwserList)
-        myPostRequest(url,["commit_questions":anwserList , "exercisesid": exerciseId , "taskid" : taskId, "passscore" :passscore, "request_source": "request_ios"]).responseJSON(completionHandler: { resp in
+        //print(exerciseId,taskId)
+        //print(anwserList)
+        
+        myPostRequest(url,["commit_questions":anwserList , "exercisesid": exerciseId , "taskid" : taskId, "passscore" :passscore, "request_source": "request_ios"] , timeoutInterval : 120).responseJSON(completionHandler: { resp in
             MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
             switch  resp.result{
             case .success(let result):
@@ -203,6 +231,7 @@ class ExamViewController : MyBaseUIViewController{
                 }
                 
             case .failure(let error):
+                MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
                 debugPrint(error)
             }
         })

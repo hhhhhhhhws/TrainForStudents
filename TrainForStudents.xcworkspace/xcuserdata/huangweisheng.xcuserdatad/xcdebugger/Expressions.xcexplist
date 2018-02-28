@@ -25,10 +25,10 @@
          contextName = "PeiwuCollectionView.collectionView(UICollectionView, didSelectItemAt : IndexPath) -&gt; ():PeiwuCollectionView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "selectedQuestionId">
+               value = "q[&quot;questionsid&quot;].stringValue">
             </PersistentString>
             <PersistentString
-               value = "q[&quot;questionsid&quot;].stringValue">
+               value = "selectedQuestionId">
             </PersistentString>
             <PersistentString
                value = "parentView?.anwserDic[selectedQuestionId]">
@@ -40,6 +40,14 @@
          <PersistentStrings>
             <PersistentString
                value = "submitParameter">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "UndoneCollectionView.collectionView(_:cellForItemAt:):UndoneCollectionView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "json[&quot;title&quot;].stringValue">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -80,10 +88,10 @@
          contextName = "MyselfCollectionView.collectionView(UICollectionView, cellForItemAt : IndexPath) -&gt; UICollectionViewCell:MyselfCollectionView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "btn.imageView?.frame.debugDescription">
+               value = "indexPath.item">
             </PersistentString>
             <PersistentString
-               value = "indexPath.item">
+               value = "btn.imageView?.frame.debugDescription">
             </PersistentString>
             <PersistentString
                value = "jsonDataSource[&quot;c0&quot;]">
@@ -174,6 +182,14 @@
          <PersistentStrings>
             <PersistentString
                value = "cell?.isSelected">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ExamViewController.viewWillAppear(_:):ExamViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "UserDefaults.Exam.any(forKey: .answerDic)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -444,10 +460,10 @@
          contextName = "MyselfController.(getMySelfData() -&gt; ()).(closure #1):MyselfController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.selfView.jsonDataSource[&quot;c0&quot;]">
+               value = "json[&quot;data&quot;]">
             </PersistentString>
             <PersistentString
-               value = "json[&quot;data&quot;]">
+               value = "self.selfView.jsonDataSource[&quot;c0&quot;]">
             </PersistentString>
             <PersistentString
                value = "j[&quot;c0&quot;] = JSON.init([&quot;22&quot;:&quot;333&quot;])">

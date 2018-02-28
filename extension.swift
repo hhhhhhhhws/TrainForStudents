@@ -28,7 +28,7 @@ var r_token = "";
 let congou_image_id = "congou_image_id"
 
 //post方式提交数据
-func myPostRequest(_ url:String, _ parameters: [String: Any]? = nil , method: HTTPMethod = HTTPMethod.post) -> DataRequest {
+func myPostRequest(_ url:String, _ parameters: [String: Any]? = nil , method: HTTPMethod = HTTPMethod.post , timeoutInterval : TimeInterval = 60) -> DataRequest {
     
     var requestParam = [String:Any]()
     let paramData = NSMutableDictionary(dictionary:["token":r_token])
@@ -48,7 +48,12 @@ func myPostRequest(_ url:String, _ parameters: [String: Any]? = nil , method: HT
     
 //    print("url:\(url)\nparam:\(JSON.init(requestParam))")
     
-    return Alamofire.request(url, method: method, parameters: requestParam, encoding: URLEncoding.default, headers: ["Content-type":"application/x-www-form-urlencoded"])
+    
+    //设置请求超时时间
+    let sessionManager = Alamofire.SessionManager.default
+    sessionManager.session.configuration.timeoutIntervalForRequest = timeoutInterval
+    
+    return sessionManager.request(url, method: method, parameters: requestParam, encoding: URLEncoding.default, headers: ["Content-type":"application/x-www-form-urlencoded"])
 }
 
 ///图片上传

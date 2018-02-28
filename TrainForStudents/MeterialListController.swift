@@ -56,7 +56,7 @@ class MeterialListController : MyBaseUIViewController{
             return
         }
         let url = SERVER_PORT+"rest/teachingMaterial/queryByOffice.do"
-        myPostRequest(url,["pageindex":meterialView.pageIndex * pageSize , "pagesize":pageSize]).responseJSON(completionHandler: {resp in
+        myPostRequest(url,["pageindex":meterialView.pageIndex * pageSize , "pagesize":pageSize],timeoutInterval:120).responseJSON(completionHandler: {resp in
             
             switch resp.result{
             case .success(let responseJson):

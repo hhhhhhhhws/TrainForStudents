@@ -75,8 +75,9 @@ class UndoneCollectionView: MyBaseCollectionView{
             lbl = cell.viewWithTag(50002) as! UILabel
             lbl.text = json["addressname"].stringValue
         }
-        
+//        print("type:\(json["type"].stringValue) traintype:\(json["traintype"].intValue) title:\(json["title"].stringValue)")
         if json["type"].stringValue == "1" && json["traintype"].intValue > 2 {
+//        if json["type"].stringValue == "1" {
             let btn = cell.viewWithTag(50003) as! UIButton
             btn.isHidden = false
             btn.restorationIdentifier = json["taskid"].stringValue
@@ -104,6 +105,7 @@ class UndoneCollectionView: MyBaseCollectionView{
             }else if json["instate"].stringValue == "0"{
                 btn.setTitle("我要报名", for: .normal)
             }
+            btn.restorationIdentifier = json["taskid"].stringValue
             btn.backgroundColor = .clear
         }
         return cell
@@ -185,7 +187,7 @@ class UndoneCollectionView: MyBaseCollectionView{
     
     func requestSignUp(instate:String,sender:UIButton) {
         let url = SERVER_PORT+"rest/task/FreeinTask.do"
-        myPostRequest(url,["taskid":signUpJson["taskid"].stringValue,"instate":instate]).responseJSON(completionHandler: {resp in
+        myPostRequest(url,["taskid":sender.restorationIdentifier,"instate":instate]).responseJSON(completionHandler: {resp in
             
             switch resp.result{
             case .success(let responseJson):

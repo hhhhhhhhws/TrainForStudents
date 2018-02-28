@@ -42,7 +42,7 @@ class HistoryExamController: MyBaseUIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    //获取历史评价
+    //获取历史考试
     func getExamDatasource(){
         
         let url = SERVER_PORT+"rest/taskexam/queryHistory.do"

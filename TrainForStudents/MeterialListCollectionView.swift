@@ -37,7 +37,7 @@ class MeterialListCollectionView : MyBaseCollectionView{
         while v >= 4 {
             v = arc4random() % 10
         }
-        print(json["type"].intValue)
+        
         switch json["type"].intValue {
         case 0: //视频
             let img = cell.viewWithTag(30001) as! UIImageView

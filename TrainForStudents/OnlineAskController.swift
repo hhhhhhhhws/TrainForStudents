@@ -94,6 +94,10 @@ class OnlineAskController: MyBaseUIViewController {
             webView.addGestureRecognizer(tagGtr)
             tagGtr.addTarget(self, action: #selector(wordFill))
             
+//            let RTMPurl = URL(string:"http://192.168.1.110:8080/hls/mystream.m3u8")
+//            let RTMPr = URLRequest(url: RTMPurl!)
+//            webView.loadRequest(RTMPr)
+            
             let lbl = UILabel()
             lbl.frame.origin = CGPoint(x: 0, y: 0)
             lbl.frame.size = webView.frame.size
@@ -111,14 +115,6 @@ class OnlineAskController: MyBaseUIViewController {
         lbl = view.viewWithTag(30001) as! UILabel
         lbl.text = "时长 \(videoInfo["howlong"].stringValue) 分钟"
         
-    }
-    
-    func wordFill (){
-        if webView.frame == player.frame{
-            webView.frame = view.frame
-        }else{
-            webView.frame = player.frame
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -237,6 +233,15 @@ class OnlineAskController: MyBaseUIViewController {
             
         })
         
+    }
+    
+    //浏览office的webview的点击事件
+    func wordFill (){
+        if webView.frame == player.frame{
+            webView.frame = view.frame
+        }else{
+            webView.frame = player.frame
+        }
     }
     
     //获取我的提问

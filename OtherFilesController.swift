@@ -106,10 +106,7 @@ class OtherFilesController: MyBaseUIViewController,UITableViewDataSource,UITable
                 let fileURL = documentsURL.appendingPathComponent(self.dataSource[indexPath.section]["reffilename"].stringValue)
                 self.openFile(fileURL)
                 
-                
-//                if let imagePath = response.destinationURL?.path {
-//                    let image = UIImage(contentsOfFile: imagePath)
-//                }
+
         }
     }
     

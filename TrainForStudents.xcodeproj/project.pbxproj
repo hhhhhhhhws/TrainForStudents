@@ -124,6 +124,7 @@
 		0A7818F81F32F7740072CF16 /* 设置.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A7818F71F32F7740072CF16 /* 设置.png */; };
 		0A7818FA1F3303260072CF16 /* 角标.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A7818F91F3303260072CF16 /* 角标.png */; };
 		0A90EFB11EFA20B400B4CC7A /* CheckboxCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90EFB01EFA20B400B4CC7A /* CheckboxCollectionView.swift */; };
+		0A91142F201D60D2001A1936 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91142E201D60D2001A1936 /* UserDefaults.swift */; };
 		0AC3B9331EE4730B00227194 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3B9321EE4730B00227194 /* AppDelegate.swift */; };
 		0AC3B9351EE4730B00227194 /* TurnCenterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3B9341EE4730B00227194 /* TurnCenterController.swift */; };
 		0AC3B9371EE4730B00227194 /* ExamCenterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3B9361EE4730B00227194 /* ExamCenterController.swift */; };
@@ -337,6 +338,7 @@
 		0A7818F71F32F7740072CF16 /* 设置.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "设置.png"; sourceTree = "<group>"; };
 		0A7818F91F3303260072CF16 /* 角标.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "角标.png"; sourceTree = "<group>"; };
 		0A90EFB01EFA20B400B4CC7A /* CheckboxCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxCollectionView.swift; sourceTree = "<group>"; };
+		0A91142E201D60D2001A1936 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		0AC3B92F1EE4730B00227194 /* TrainForStudents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainForStudents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AC3B9321EE4730B00227194 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AC3B9341EE4730B00227194 /* TurnCenterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnCenterController.swift; sourceTree = "<group>"; };
@@ -682,12 +684,13 @@
 		0AC3B97A1EE53F4D00227194 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				0AC3B97D1EE53F5900227194 /* String.swift */,
 				0AC3B97B1EE53F5900227194 /* UILabel.swift */,
 				0AC3B97C1EE53F5900227194 /* UIColor.swift */,
-				0AC3B97D1EE53F5900227194 /* String.swift */,
 				0AC3B97E1EE53F5900227194 /* UIScreen.swift */,
 				0AC49F611F347D290028A65C /* UIImage.swift */,
 				0A291B631F3D8136008784B5 /* UIButton.swift */,
+				0A91142E201D60D2001A1936 /* UserDefaults.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -1352,6 +1355,7 @@
 				0AC3BCA31EE94DA300227194 /* LBXScanViewStyle.swift in Sources */,
 				B468B7C41FCA9BA000ECF396 /* MJRefreshBackNormalFooter.m in Sources */,
 				B468B7BC1FCA9BA000ECF396 /* MJRefreshBackFooter.m in Sources */,
+				0A91142F201D60D2001A1936 /* UserDefaults.swift in Sources */,
 				0A0C570D1F4D70AE008551D3 /* ChangePersonInfoController.swift in Sources */,
 				0A644D9D1F065B53009025DD /* MyEvaluationDetailCollection.swift in Sources */,
 				0A644D771F018F3E009025DD /* MockExamCenterController.swift in Sources */,

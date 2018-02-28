@@ -70,9 +70,11 @@ class DifficultListCollectionView : MyBaseCollectionView{
     
     override func refresh() {
         if isMine{
+            parentView?.mineView.jsonDataSource = [JSON]()
             parentView?.mineView.initLimitPage()
             parentView?.getMineDatasource()
         }else{
+            parentView?.officeView.jsonDataSource = [JSON]()
             parentView?.officeView.initLimitPage()
             parentView?.getOfficeDatasource()
         }
