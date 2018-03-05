@@ -15,6 +15,7 @@ class PeiwuCollectionView : QuestionCollectionView {
     var selectedQuestionId = ""
     var selectedDic = [String:String]()
     //var selectedQuestionIndex = ""
+    var selectedIndex :IndexPath? = nil
     
     //实现UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
@@ -26,6 +27,7 @@ class PeiwuCollectionView : QuestionCollectionView {
         if subQ.count > indexPath.item{
             let cellName = "c1"
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellName, for: indexPath)
+            cell.backgroundColor = UIColor.clear
             //获取数据
             data = subQ[indexPath.item]
             let qid = data["questionsid"].stringValue
@@ -145,7 +147,27 @@ class PeiwuCollectionView : QuestionCollectionView {
         let a = jsonDataSource["up_answers"].arrayValue
         //判断是题目还是答案
         if subQ.count > indexPath.item{
+//            let cell = collectionView.cellForItem(at: indexPath)
+//
+//            print("before  selectedIndex:\(selectedIndex)  cell:\(indexPath)")
             
+            //如果用户是第一次选择题目
+//            if selectedIndex == nil {
+//                selectedIndex = indexPath
+//                cell?.backgroundColor = UIColor.init(hex: "dedede")
+//            }else if selectedIndex != indexPath{    //如果用户选择的题目和上一次不同 则反选上次的题目 选中这次的题目
+//                let selectedCell = collectionView.cellForItem(at: selectedIndex!)
+//                selectedCell?.backgroundColor = UIColor.clear
+//                cell?.backgroundColor = UIColor.init(hex: "dedede")
+//            }else if selectedIndex == indexPath{
+//                cell?.backgroundColor = UIColor.clear
+//            }
+            
+//            print("after  selectedIndex:\(selectedIndex)  cell:\(indexPath)")
+//            print("----------------------------------------------------")
+            
+            //记录被选中的题目
+            selectedIndex = indexPath
             let q = subQ[indexPath.item]
             let qid = q["questionsid"].stringValue
             if selectedQuestionId != qid {

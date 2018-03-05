@@ -43,6 +43,7 @@ class SettingsController : MyBaseUIViewController{
     @IBAction func btn_settings_inside(_ sender: UIButton) {
         UserDefaults.standard.set(nil, forKey: LoginInfo.token.rawValue)
         r_token = ""
+        UserDefaults.Exam.set(value: nil, forKey: .answerDic)
         myPresentView(self, viewName: "loginView")
     }
 

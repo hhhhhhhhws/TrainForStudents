@@ -163,6 +163,7 @@
 		0AEBF3C21F207EB200520E27 /* 结业.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AEBF3BF1F207EB200520E27 /* 结业.png */; };
 		0AEBF3C31F207EB200520E27 /* 年度.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AEBF3C01F207EB200520E27 /* 年度.png */; };
 		0AEBF3C51F20804700520E27 /* 出科.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AEBF3C41F20804700520E27 /* 出科.png */; };
+		0AF677DC20491CC9002239A3 /* excel.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AF677DB20491CC8002239A3 /* excel.png */; };
 		0AFCF6AD1FFDF91D00CF044E /* FITBCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFCF6AC1FFDF91D00CF044E /* FITBCollectionView.swift */; };
 		0AFE94241F209874009C4CDF /* MyCollectionBaseFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE94231F209874009C4CDF /* MyCollectionBaseFooter.swift */; };
 		0AFE94261F209C3F009C4CDF /* MyNoDataCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE94251F209C3F009C4CDF /* MyNoDataCellView.swift */; };
@@ -381,6 +382,7 @@
 		0AEBF3BF1F207EB200520E27 /* 结业.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "结业.png"; sourceTree = "<group>"; };
 		0AEBF3C01F207EB200520E27 /* 年度.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "年度.png"; sourceTree = "<group>"; };
 		0AEBF3C41F20804700520E27 /* 出科.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "出科.png"; sourceTree = "<group>"; };
+		0AF677DB20491CC8002239A3 /* excel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = excel.png; path = ../../../../Users/huangweisheng/Downloads/excel.png; sourceTree = "<group>"; };
 		0AFCF6AC1FFDF91D00CF044E /* FITBCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FITBCollectionView.swift; sourceTree = "<group>"; };
 		0AFE94231F209874009C4CDF /* MyCollectionBaseFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionBaseFooter.swift; sourceTree = "<group>"; };
 		0AFE94251F209C3F009C4CDF /* MyNoDataCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNoDataCellView.swift; sourceTree = "<group>"; };
@@ -727,6 +729,7 @@
 		0AC3B98A1EE5868E00227194 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				0AF677DB20491CC8002239A3 /* excel.png */,
 				0A0FA8851F0F615300DFEA7E /* video.png */,
 				0A0FA8861F0F615300DFEA7E /* picture.png */,
 				0A0FA8871F0F615300DFEA7E /* voice.png */,
@@ -1122,6 +1125,7 @@
 				0A0C57111F511D9D008551D3 /* 扫一扫.png in Resources */,
 				0A644D6D1F0113EC009025DD /* 年度2.png in Resources */,
 				0A644D7E1F0190BE009025DD /* 试题3.png in Resources */,
+				0AF677DC20491CC9002239A3 /* excel.png in Resources */,
 				0A7818F31F32F6990072CF16 /* 远程2x.png in Resources */,
 				0A0FA88C1F0F615300DFEA7E /* voice.png in Resources */,
 				B468B7C91FCA9BA000ECF396 /* MJRefresh.bundle in Resources */,

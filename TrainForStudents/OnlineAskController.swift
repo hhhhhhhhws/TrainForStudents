@@ -12,6 +12,8 @@ import SwiftyJSON
 import BMPlayer
 import NVActivityIndicatorView
 import GTMRefresh
+import QuickLook
+import Alamofire
 
 class OnlineAskController: MyBaseUIViewController {
     
@@ -237,11 +239,34 @@ class OnlineAskController: MyBaseUIViewController {
     
     //浏览office的webview的点击事件
     func wordFill (){
-        if webView.frame == player.frame{
-            webView.frame = view.frame
-        }else{
-            webView.frame = player.frame
+//        if webView.frame == player.frame{
+//            webView.frame = view.frame
+//        }else{
+//            webView.frame = player.frame
+//        }
+        
+        let url = videoInfo["fullurl"].stringValue
+        let fileName = videoInfo["reffilename"].stringValue
+
+
+//        //指定下载路径和保存文件名
+        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let fileURL = documentsURL.appendingPathComponent(fileName)
+            print("\r\r测试--------------文件保存---------------\r\r")
+            //两个参数表示如果有同名文件则会覆盖，如果路径中文件夹不存在则会自动创建
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
+        
+//        //开始下载
+        Alamofire.download(url, to: destination)
+            .response { response in
+                print(response)
+                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                let fileURL = documentsURL.appendingPathComponent(fileName)
+                self.openFile(fileURL)
+        }
+        
     }
     
     //获取我的提问
@@ -305,12 +330,36 @@ extension OnlineAskController : UIWebViewDelegate{
         
     }
     
+    
+    
 }
 
 extension OnlineAskController : UIGestureRecognizerDelegate{
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+    
+}
+
+extension OnlineAskController : UIDocumentInteractionControllerDelegate{
+    
+    func openFile(_ filePath: URL) {
+        let _docController = UIDocumentInteractionController.init(url: filePath)
+        _docController.delegate = self
+        //        _docController.presentOpenInMenu(from: self.view.frame, in: self.view, animated: true)
+        _docController.presentPreview(animated: true)
+    }
+    
+    func documentInteractionControllerViewForPreview(_ controller: UIDocumentInteractionController) -> UIView? {
+        return self.view
+    }
+    
+    func documentInteractionControllerRectForPreview(_ controller: UIDocumentInteractionController) -> CGRect {
+        return self.view.frame
+    }
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        return self
     }
     
 }

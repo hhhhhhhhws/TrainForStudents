@@ -30,7 +30,8 @@ class RadioCollectionView : PeiwuCollectionView{
             var title = data["indexname"].stringValue + " " + data["title"].stringValue
             lbl.text = title
             
-            lbl.numberOfLines = title.getLineNumberForWidth(width: lbl.frame.width - boundary, cFont: (lbl.font)!)
+            //计算出需要的行数后在多加一行防止一些空格和符号显示不全
+            lbl.numberOfLines = title.getLineNumberForWidth(width: lbl.frame.width - boundary, cFont: (lbl.font)!) + 1
             lbl.frame.size = CGSize(width: lbl.frame.size.width, height: getHeightForLabel(lbl: lbl))
             
             if qid == selectedQuestionId{
@@ -89,7 +90,7 @@ class RadioCollectionView : PeiwuCollectionView{
             
         }
         
-        print("cell.tag=\(cell.tag)")
+        //print("cell.tag=\(cell.tag)")
         return cell
         
     }
@@ -115,7 +116,11 @@ class RadioCollectionView : PeiwuCollectionView{
             text = data["answervalue"].stringValue
             minHeight.add(10)  //答案选项的cell需要增加间距
         }
-        let lineNumber = text.getLineNumberForWidth(width: labelWidth, cFont: questionFont)
+        var lineNumber = text.getLineNumberForWidth(width: labelWidth, cFont: questionFont)
+        if indexPath.item == 0{
+            lineNumber = lineNumber + 1
+        }
+        
         lineHeight = text.getHeight(font:questionFont)
         lineHeight.multiply(by: CGFloat(lineNumber))
         lineHeight.add(5)

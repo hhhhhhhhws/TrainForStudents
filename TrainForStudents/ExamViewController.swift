@@ -14,11 +14,13 @@ class ExamViewController : MyBaseUIViewController{
     
     var taskId = ""
     var exerciseId = ""
+    var marking = 0
     var isSimulation = false
     var exercises = [JSON]()    //考卷内容
     var currentType = JSON.init("") //当前题型
     var typeIndex = 0
     var questionIndex = 0
+    
     ///存储已选择的答案
     var answerDic = [String:Dictionary<String, String>]()
     
@@ -194,38 +196,48 @@ class ExamViewController : MyBaseUIViewController{
                 print(json)
                 if json["code"].intValue == 1 {
                     self.resultView.isHidden = false
-                    if json["ispass"].stringValue == "1"{
-                        let imageView = self.resultView.viewWithTag(10001) as! UIImageView
-                        imageView.image = UIImage(named: "通过了.png")
-                        var lbl = self.resultView.viewWithTag(20001) as! UILabel
-                        lbl.text = "恭喜你顺利通过抽考!"
+                    if self.marking == 1 {
+                        var lbl = self.resultView.viewWithTag(30000) as! UILabel
+                        lbl.isHidden = true
                         lbl = self.resultView.viewWithTag(30001) as! UILabel
-                        lbl.text = json["score"].stringValue
-                        let btn = self.resultView.viewWithTag(40002) as! UIButton
-                        btn.isHidden = false
-                        if self.isSimulation{   //模拟考和抽考区分处理
-                            //btn.setTitle("返回", for: .normal)
-                        }
-                        
+                        lbl.isHidden = true
+                        lbl = self.resultView.viewWithTag(20001) as! UILabel
+                        lbl.text = "已提交成功，请等待老师阅卷"
                     }else{
-                        let imageView = self.resultView.viewWithTag(10001) as! UIImageView
-                        imageView.image = UIImage(named: "没通过.png")
-                        var lbl = self.resultView.viewWithTag(20001) as! UILabel
-                        lbl.text = "考试不合格!"
-                        lbl = self.resultView.viewWithTag(30001) as! UILabel
-                        lbl.text = json["score"].stringValue
-                        if self.isSimulation{   //模拟考和抽考区分处理
+                        if json["ispass"].stringValue == "1"{
+                            let imageView = self.resultView.viewWithTag(10001) as! UIImageView
+                            imageView.image = UIImage(named: "通过了.png")
+                            var lbl = self.resultView.viewWithTag(20001) as! UILabel
+                            lbl.text = "恭喜你顺利通过抽考!"
+                            lbl = self.resultView.viewWithTag(30001) as! UILabel
+                            lbl.text = json["score"].stringValue
                             let btn = self.resultView.viewWithTag(40002) as! UIButton
                             btn.isHidden = false
-                            //btn.setTitle("返回", for: .normal)
+                            if self.isSimulation{   //模拟考和抽考区分处理
+                                //btn.setTitle("返回", for: .normal)
+                            }
+                            
                         }else{
-                            var btn = self.resultView.viewWithTag(40001) as! UIButton
-                            btn.isHidden = false
-                            btn = self.resultView.viewWithTag(40003) as! UIButton
-                            btn.isHidden = false
+                            let imageView = self.resultView.viewWithTag(10001) as! UIImageView
+                            imageView.image = UIImage(named: "没通过.png")
+                            var lbl = self.resultView.viewWithTag(20001) as! UILabel
+                            lbl.text = "考试不合格!"
+                            lbl = self.resultView.viewWithTag(30001) as! UILabel
+                            lbl.text = json["score"].stringValue
+                            if self.isSimulation{   //模拟考和抽考区分处理
+                                let btn = self.resultView.viewWithTag(40002) as! UIButton
+                                btn.isHidden = false
+                                //btn.setTitle("返回", for: .normal)
+                            }else{
+                                var btn = self.resultView.viewWithTag(40001) as! UIButton
+                                btn.isHidden = false
+                                btn = self.resultView.viewWithTag(40003) as! UIButton
+                                btn.isHidden = false
+                            }
+                            
                         }
-                        
                     }
+                    
                 }else{
                     myAlert(self, message: json["msg"].stringValue)
                 }

@@ -28,25 +28,19 @@ class ChangePersonInfoController: MyBaseUIViewController   {
             return
         }
         
-        let majorname = self.view.viewWithTag(30001) as! UITextField
-        if majorname.text == ""{
-            myAlert(self, message: "请输入专业!")
-            return
-        }
-        
-        let phoneno = self.view.viewWithTag(40001) as! UITextField
+        let phoneno = self.view.viewWithTag(30001) as! UITextField
         if phoneno.text == ""{
             myAlert(self, message: "请输入电话!")
             return
         }
         
-        let highestdegree = self.view.viewWithTag(50001) as! UITextField
+        let highestdegree = self.view.viewWithTag(40001) as! UITextField
         if highestdegree.text == ""{
             myAlert(self, message: "请输入学历!")
             return
         }
         
-        myPostRequest(url,["personid":UserDefaults.User.string(forKey: .personId),"jobnum":UserDefaults.User.string(forKey: .jobNum),"personname":personname.text,"majorname":majorname.text,"phoneno":phoneno.text,"highestdegree":highestdegree.text]).responseJSON(completionHandler: { resp in
+        myPostRequest(url,["personid":UserDefaults.User.string(forKey: .personId),"jobnum":UserDefaults.User.string(forKey: .jobNum),"personname":personname.text,"phoneno":phoneno.text,"highestdegree":highestdegree.text]).responseJSON(completionHandler: { resp in
             
             switch  resp.result{
             case .success(let result):
@@ -84,14 +78,10 @@ class ChangePersonInfoController: MyBaseUIViewController   {
         
         textField = self.view.viewWithTag(30001) as! UITextField
         textField.clearButtonMode = .always
-        textField.text = UserDefaults.User.string(forKey: .majorName)
-        
-        textField = self.view.viewWithTag(40001) as! UITextField
-        textField.clearButtonMode = .always
         textField.keyboardType = .numberPad
         textField.text = UserDefaults.User.string(forKey: .phoneNo)
         
-        textField = self.view.viewWithTag(50001) as! UITextField
+        textField = self.view.viewWithTag(40001) as! UITextField
         textField.clearButtonMode = .always
         textField.text = UserDefaults.User.string(forKey: .highestDegree)
         

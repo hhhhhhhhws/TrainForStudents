@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 import QuickLook
+
 class OtherFilesController: MyBaseUIViewController,UITableViewDataSource,UITableViewDelegate,UIDocumentInteractionControllerDelegate{
     var tableView = UITableView()
     var taskId = ""
@@ -94,6 +95,7 @@ class OtherFilesController: MyBaseUIViewController,UITableViewDataSource,UITable
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let fileURL = documentsURL.appendingPathComponent(self.dataSource[indexPath.section]["reffilename"].stringValue)
+            print("\r\r测试--------------文件保存---------------\r\r")
             //两个参数表示如果有同名文件则会覆盖，如果路径中文件夹不存在则会自动创建
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
@@ -105,8 +107,6 @@ class OtherFilesController: MyBaseUIViewController,UITableViewDataSource,UITable
                 let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                 let fileURL = documentsURL.appendingPathComponent(self.dataSource[indexPath.section]["reffilename"].stringValue)
                 self.openFile(fileURL)
-                
-
         }
     }
     

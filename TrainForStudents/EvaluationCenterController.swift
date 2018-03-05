@@ -200,6 +200,8 @@ class EvaluationCenterController : MyBaseUIViewController , UIScrollViewDelegate
                     vc.exerciseId = exercisesid
                     vc.taskId = self.examView.jsonDataSource[(indexPath?.row)!]["taskid"].stringValue
                     vc.passscore = self.examView.jsonDataSource[(indexPath?.row)!]["passscore"].stringValue
+                    vc.marking = self.examView.jsonDataSource[(indexPath?.row)!]["marking"].intValue
+                    
                     vc.isSimulation = true
                     vc.isTheoryExam = true
                     self.present(vc, animated: true, completion: nil)
@@ -245,7 +247,8 @@ class EvaluationCenterController : MyBaseUIViewController , UIScrollViewDelegate
             return
         }
         
-        let url = SERVER_PORT+"rest/taskexam/query.do"
+//        let url = SERVER_PORT+"rest/taskexam/query.do"
+        let url = "http://192.168.2.247:8070/doctor_train/rest/taskexam/query.do"
         myPostRequest(url,["pageindex": examView.pageIndex * pageSize , "pagesize":pageSize]).responseJSON(completionHandler: {resp in
             
             switch resp.result{

@@ -59,9 +59,9 @@ class MeterialListCollectionView : MyBaseCollectionView{
             let img = cell.viewWithTag(30001) as! UIImageView
             img.image = UIImage(named: "picture")
             break
-        case 5: //word
+        case 5: //excel
             let img = cell.viewWithTag(30001) as! UIImageView
-            img.image = UIImage(named: "word")
+            img.image = UIImage(named: "excel")
             break
         default:
             let img = cell.viewWithTag(30001) as! UIImageView
