@@ -247,8 +247,7 @@ class EvaluationCenterController : MyBaseUIViewController , UIScrollViewDelegate
             return
         }
         
-//        let url = SERVER_PORT+"rest/taskexam/query.do"
-        let url = "http://192.168.2.247:8070/doctor_train/rest/taskexam/query.do"
+        let url = SERVER_PORT+"rest/taskexam/query.do"
         myPostRequest(url,["pageindex": examView.pageIndex * pageSize , "pagesize":pageSize]).responseJSON(completionHandler: {resp in
             
             switch resp.result{

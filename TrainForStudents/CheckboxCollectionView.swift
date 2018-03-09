@@ -166,15 +166,9 @@ class CheckboxCollectionView : BasePeiwuCollectionView{
             let lbl = (cell?.viewWithTag(10001) as? UILabel)!
             var title = jsonDataSource["indexname"].stringValue + " " + jsonDataSource["title"].stringValue
 
-            //在题目结尾展示答案
-//            title.insert(Character.init(inputanswer!), at: title.index(before: title.endIndex))
-            
-//            title.insert("dadad".characters, at: title.endIndex-1)
-//            title.insert(inputanswer?.characters, at: title.startIndex)
-
             let str = inputanswer!
             
-            title.insert(contentsOf: str.characters, at: title.index(title.endIndex, offsetBy: -3))
+            title.insert(contentsOf: str.characters, at: title.endIndex)
             lbl.text = title
         }
     }

@@ -41,7 +41,7 @@ class RadioCollectionView : PeiwuCollectionView{
             let inputanswer = parentView?.answerDic[qid]?["inputanswer"]
             if inputanswer != nil{
                 //在题目结尾展示答案
-                title.insert(Character.init(inputanswer!), at: title.index(before: title.endIndex))
+                title.insert(Character.init(inputanswer!), at: title.endIndex)
                 lbl.text = title
             }
             //被选中则需要把题目对应被选中的答案也带出来

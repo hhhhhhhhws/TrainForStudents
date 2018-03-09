@@ -116,7 +116,7 @@ class FITBCollectionView : BasePeiwuCollectionView , UITextFieldDelegate{
             answerStr += ",\(s == "" ? " ":s)"
         }
         answerStr = String.init(answerStr.dropFirst())
-        print(answerStr)
+        //print(answerStr)
         answerDic!["inputanswer"] = answerStr
         parentView?.answerDic[questionId] = answerDic
         

@@ -30,6 +30,8 @@ class ExamViewController : MyBaseUIViewController{
     
     @IBOutlet weak var lbl_questionType: UILabel!
     
+    @IBOutlet weak var lbl_prompt: UIView!
+    
     @IBOutlet weak var btn_prev: UIButton!
     
     @IBOutlet weak var btn_next: UIButton!
@@ -50,8 +52,6 @@ class ExamViewController : MyBaseUIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
         
         let questionlayout = UICollectionViewFlowLayout()
         questionlayout.minimumLineSpacing = 3
@@ -76,6 +76,7 @@ class ExamViewController : MyBaseUIViewController{
         
         //初始化题型标题
         lbl_questionType.text = String(format: questionTypeTitle, arguments: [currentType["indexname"].stringValue,currentType["typename"].stringValue,currentType["count"].intValue,currentType["score"].intValue,currentType["count"].intValue * currentType["score"].intValue])
+        promptSwap(currentType["typename"].stringValue)
         
         btn_complete.isHidden = true
         btn_prev.isEnabled = !isFirstQuestion()
@@ -173,7 +174,7 @@ class ExamViewController : MyBaseUIViewController{
     
     //提交考试答案
     func submitAnswer(){
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+//        MBProgressHUD.showAdded(to: self.view, animated: true)
         var anwserList = [Dictionary<String, String>]()
         
         for (_,v) in answerDic{
@@ -186,7 +187,7 @@ class ExamViewController : MyBaseUIViewController{
             url = SERVER_PORT + "rest/exercises/theoryCommitPaper.do"
         }
         //print(exerciseId,taskId)
-        //print(anwserList)
+        print(anwserList)
         
         myPostRequest(url,["commit_questions":anwserList , "exercisesid": exerciseId , "taskid" : taskId, "passscore" :passscore, "request_source": "request_ios"] , timeoutInterval : 120).responseJSON(completionHandler: { resp in
             MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
@@ -216,7 +217,7 @@ class ExamViewController : MyBaseUIViewController{
                             if self.isSimulation{   //模拟考和抽考区分处理
                                 //btn.setTitle("返回", for: .normal)
                             }
-                            
+
                         }else{
                             let imageView = self.resultView.viewWithTag(10001) as! UIImageView
                             imageView.image = UIImage(named: "没通过.png")
@@ -234,14 +235,14 @@ class ExamViewController : MyBaseUIViewController{
                                 btn = self.resultView.viewWithTag(40003) as! UIButton
                                 btn.isHidden = false
                             }
-                            
+
                         }
                     }
-                    
+
                 }else{
                     myAlert(self, message: json["msg"].stringValue)
                 }
-                
+
             case .failure(let error):
                 MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
                 debugPrint(error)
@@ -368,13 +369,22 @@ class ExamViewController : MyBaseUIViewController{
             questionIndex = currentType["questions"].arrayValue.count - 1
         }
         
-        
         //初始化题型标题
         lbl_questionType.text = String(format: questionTypeTitle, arguments: [currentType["indexname"].stringValue,currentType["typename"].stringValue,currentType["count"].intValue,currentType["score"].intValue,currentType["count"].intValue * currentType["score"].intValue])
+        promptSwap(currentType["typename"].stringValue)
         
         btn_prev.isEnabled = !isFirstQuestion()
         btn_next.isEnabled = !isLastQuestion()
         
+    }
+    
+    ///切换提示信息的显示与隐藏
+    func promptSwap(_ typeName : String){
+        if typeName == "配伍题"{
+            lbl_prompt.isHidden = false
+        }else{
+            lbl_prompt.isHidden = true
+        }
     }
     
     ///判断当前是否第一题

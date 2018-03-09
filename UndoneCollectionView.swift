@@ -76,9 +76,9 @@ class UndoneCollectionView: MyBaseCollectionView{
             lbl.text = json["addressname"].stringValue
         }
 //        print("type:\(json["type"].stringValue) traintype:\(json["traintype"].intValue) title:\(json["title"].stringValue)")
-        if json["type"].stringValue == "1" && json["traintype"].intValue > 2 {
-//        if json["type"].stringValue == "1" {
-            let btn = cell.viewWithTag(50003) as! UIButton
+//        if json["type"].stringValue == "1" && json["traintype"].intValue > 2 {
+        if json["type"].stringValue == "1" {
+            let btn = cell.viewWithTag(50004) as! UIButton
             btn.isHidden = false
             btn.restorationIdentifier = json["taskid"].stringValue
             btn.addTarget(self, action: #selector(btn_assistant_inside), for: .touchUpInside)
@@ -89,24 +89,27 @@ class UndoneCollectionView: MyBaseCollectionView{
             btn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
             btn.setTitle("我是助理", for: .normal)
             btn.backgroundColor = .clear
-        }else if json["isfreein"].stringValue == "1"{
-            let btn = cell.viewWithTag(50003) as! UIButton
-            btn.isHidden = false
-            btn.restorationIdentifier = json["taskid"].stringValue
-            btn.addTarget(self, action: #selector(signUpAction(sender:)), for: .touchUpInside)
-            btn.layer.cornerRadius = 4
-            btn.layer.borderWidth = 1.0
-            btn.layer.borderColor = UIColor.init(red: 245/255.0, green: 248/255.0, blue: 251/255.0, alpha: 1.0).cgColor
-            btn.setTitleColor(UIColor.init(red: 64/255.0, green: 123/255.0, blue: 216/255.0, alpha: 1.0), for: .normal)
-            btn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-            if json["instate"].stringValue == "1" {
-                btn.setTitle("取消报名", for: .normal)
-
-            }else if json["instate"].stringValue == "0"{
-                btn.setTitle("我要报名", for: .normal)
+            
+            if json["isfreein"].stringValue == "1"{
+                let instateBtn = cell.viewWithTag(50003) as! UIButton
+                instateBtn.isHidden = false
+                instateBtn.restorationIdentifier = json["taskid"].stringValue
+                instateBtn.addTarget(self, action: #selector(signUpAction(sender:)), for: .touchUpInside)
+                instateBtn.layer.cornerRadius = 4
+                instateBtn.layer.borderWidth = 1.0
+                instateBtn.layer.borderColor = UIColor.init(red: 245/255.0, green: 248/255.0, blue: 251/255.0, alpha: 1.0).cgColor
+                instateBtn.setTitleColor(UIColor.init(red: 64/255.0, green: 123/255.0, blue: 216/255.0, alpha: 1.0), for: .normal)
+                instateBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+                if json["instate"].stringValue == "1" {
+                    instateBtn.setTitle("取消报名", for: .normal)
+                    
+                }else if json["instate"].stringValue == "0"{
+                    instateBtn.setTitle("我要报名", for: .normal)
+                }
+                instateBtn.restorationIdentifier = json["taskid"].stringValue
+                instateBtn.backgroundColor = .clear
             }
-            btn.restorationIdentifier = json["taskid"].stringValue
-            btn.backgroundColor = .clear
+            
         }
         return cell
         

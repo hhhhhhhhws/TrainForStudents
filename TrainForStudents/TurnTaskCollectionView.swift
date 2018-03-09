@@ -20,6 +20,7 @@ class TurnTaskCollectionView : UIViewController,  UICollectionViewDelegate , UIC
     var isFirstLoad = false
     let itemWidth = UIScreen.width
     let itemHeight = CGFloat(35)
+    let boundary = CGFloat(4)
     
     //设置collectionView的分区个数
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -49,29 +50,58 @@ class TurnTaskCollectionView : UIViewController,  UICollectionViewDelegate , UIC
             lbl = cell.viewWithTag(10002) as? UILabel
             lbl?.text = "需轮转\(json["monthnum"].stringValue)个月"
             
-            var linenum = 0
+            var lastItemY = CGFloat(0)
+            var lastItemHeight = CGFloat(0)
             let requireList = json["infolist"].arrayValue
+
             for rJson in requireList {
-                let x = 0
-                var y = 41
-                //计算y轴
-                y += Int(itemHeight.multiplied(by: CGFloat(linenum)))
+                let x = CGFloat(0)
+                var y = CGFloat(41)
                 
                 let v = Bundle.main.loadNibNamed("OutlineItem", owner: nil, options: nil)?.first as! OutlineItem
                 
-                var frame = CGRect()
-                frame.origin = CGPoint(x: x, y: y)
-                frame.size = CGSize(width: itemWidth, height: itemHeight)
-                v.frame = frame
+                let itemName = rJson["outlineitemname"].stringValue
                 
-                v.lbl_content.text = rJson["outlineitemname"].stringValue
+                v.lbl_content.text = itemName
+                v.lbl_content.backgroundColor = UIColor.clear
+                v.lbl_content.numberOfLines = itemName.getLineNumberForWidth(width: v.lbl_content.frame.width - boundary, cFont: (v.lbl_content.font)!)
+                v.lbl_content.frame.size = CGSize(width: v.lbl_content.frame.size.width, height: getHeightForLabel(lbl: v.lbl_content))
+                
                 v.lbl_complate.text = rJson["completenum"].stringValue
                 v.lbl_total.text = rJson["requirednum"].stringValue
                 v.btn_action.addTarget(self, action: #selector(btn_action_inside), for: .touchUpInside)
                 
+                var contentHeight = v.lbl_content.frame.height
+                if contentHeight < 40{
+                   contentHeight = 40
+                }
+                
+                var frame = CGRect()
+                if contentHeight < itemHeight{
+                    frame.size = CGSize(width: itemWidth, height: itemHeight)
+                }else{
+                    frame.size = CGSize(width: itemWidth, height: contentHeight)
+                }
+                
+                //计算y轴
+                if lastItemY < y{
+                    lastItemY = CGFloat(y)
+                }
+                y = lastItemY.adding(lastItemHeight)
+                frame.origin = CGPoint(x: x, y: y)
+                v.frame = frame
                 cell.addSubview(v)
                 
-                linenum += 1
+                //记录最后渲染的item的数据
+                lastItemHeight = contentHeight
+                lastItemY = y
+                
+                print(itemName)
+                print("lineNumbaer:\(v.lbl_content.numberOfLines)")
+                print("height:\(v.lbl_content.frame.size.height)")
+                print("frame:\(v.frame)")
+                print("-------------------")
+                
             }
             
         }else{
@@ -118,8 +148,23 @@ class TurnTaskCollectionView : UIViewController,  UICollectionViewDelegate , UIC
             if indexPath == selectedIndexPath{
                 
                 let json = outlineData[indexPath.item]
-                let count = json["infolist"].arrayValue.count
-                height = itemHeight.multiplied(by: CGFloat(count)).adding(height)
+//                let count = json["infolist"].arrayValue.count
+//                height = itemHeight.multiplied(by: CGFloat(count)).adding(height)
+                
+                let requireList = json["infolist"].arrayValue
+                let v = Bundle.main.loadNibNamed("OutlineItem", owner: nil, options: nil)?.first as! OutlineItem
+                for rJson in requireList {
+                    let itemName = rJson["outlineitemname"].stringValue
+                    v.lbl_content.numberOfLines = itemName.getLineNumberForWidth(width: v.lbl_content.frame.width - boundary, cFont: (v.lbl_content.font)!)
+                    let itemHeight = getHeightForLabel(lbl: v.lbl_content)
+                    if itemHeight < 40{
+                        height.add(40)
+                    }else{
+                        height.add(itemHeight)
+                    }
+                    
+                }
+                
             }
 
             return CGSize(width: UIScreen.width, height: height)
@@ -162,5 +207,10 @@ class TurnTaskCollectionView : UIViewController,  UICollectionViewDelegate , UIC
         parentView?.buttonViewIsHidden(true)
     }
     
+    ///根据lbl的lineNumbner计算lbl的高度
+    func getHeightForLabel(lbl : UILabel) -> CGFloat{
+        
+        return CGFloat(lbl.numberOfLines * 28)
+    }
     
 }
