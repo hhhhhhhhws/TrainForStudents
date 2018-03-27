@@ -49,20 +49,18 @@ class LBXPermissions: NSObject {
     static func isGetPhotoPermission()->Bool
     {
         var bResult = false
-        if  Float(UIDevice.current.systemVersion) < 8.0
-        {
+        
+        let verNumber = Int(UIDevice.current.systemVersion.prefix(1))!
+        
+        if  verNumber >= 2 && verNumber <= 8{
 
-//            if( ALAssetsLibrary.authorizationStatus() != ALAuthorizationStatus.denied )
-//            {
-//                bResult = true
-//                
-//            }
+            if( ALAssetsLibrary.authorizationStatus() != ALAuthorizationStatus.denied ){
+                bResult = true
+                
+            }
             
-        }
-        else
-        {
-            if ( PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.denied )
-            {
+        }else{
+            if ( PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.denied ){
                 bResult = true
             }
         }
