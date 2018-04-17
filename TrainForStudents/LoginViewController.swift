@@ -149,7 +149,6 @@ class LoginViewController : MyBaseUIViewController, UIPickerViewDataSource , UIP
     }
     
     
-    
     //下载基地列表
     func loadHospital(){
         
@@ -204,7 +203,10 @@ class LoginViewController : MyBaseUIViewController, UIPickerViewDataSource , UIP
                     let token = json["token"].stringValue
                     r_token = token
                     UserDefaults.standard.set(token, forKey: LoginInfo.token.rawValue)
-                    UserDefaults.standard.set(self.txt_loginId.text!, forKey: LoginInfo.loginId.rawValue)
+                    UserDefaults.standard.set(self.txt_loginId.text!, forKey:
+                        LoginInfo.loginId.rawValue)
+                    let cacheAnswersDic = [String : [String : Dictionary<String, String>]]()
+                    UserDefaults.Exam.set(value: cacheAnswersDic, forKey: .answerDic)
                     //注册极光推送别名
                     JPUSHService.setAlias(json["userkey"].stringValue, callbackSelector: nil, object: 0)
                     //print("极光推送注册的别名:\(json["userkey"].stringValue)")

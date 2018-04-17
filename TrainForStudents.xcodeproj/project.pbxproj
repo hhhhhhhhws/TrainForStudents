@@ -102,6 +102,12 @@
 		0A644D9F1F078CC9009025DD /* DifficultListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A644D9E1F078CC9009025DD /* DifficultListCollectionView.swift */; };
 		0A644DA11F078D9A009025DD /* DifficultListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A644DA01F078D9A009025DD /* DifficultListController.swift */; };
 		0A644DA31F07A0E4009025DD /* hot.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A644DA21F07A0E4009025DD /* hot.png */; };
+		0A667BC92084B14800594BE7 /* LiveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A667BC82084B14800594BE7 /* LiveController.swift */; };
+		0A667BCB2085CF4E00594BE7 /* LiveLIstController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A667BCA2085CF4E00594BE7 /* LiveLIstController.swift */; };
+		0A667BCE2085DE7400594BE7 /* cover2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A667BCC2085DE7200594BE7 /* cover2.jpg */; };
+		0A667BCF2085DE7400594BE7 /* cover1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A667BCD2085DE7300594BE7 /* cover1.jpg */; };
+		0A667BD12085EA1C00594BE7 /* 播放.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A667BD02085EA1B00594BE7 /* 播放.png */; };
+		0A667BD52085F34900594BE7 /* 暂停.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A667BD42085F34800594BE7 /* 暂停.png */; };
 		0A6A23A61EEC70A500A1AC5B /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A23A51EEC70A500A1AC5B /* ScannerViewController.swift */; };
 		0A6A23AA1EEE8FCD00A1AC5B /* ExamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A23A91EEE8FCD00A1AC5B /* ExamViewController.swift */; };
 		0A6A23AC1EEE95BE00A1AC5B /* QuestionCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A23AB1EEE95BE00A1AC5B /* QuestionCollectionView.swift */; };
@@ -317,6 +323,12 @@
 		0A644D9E1F078CC9009025DD /* DifficultListCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DifficultListCollectionView.swift; sourceTree = "<group>"; };
 		0A644DA01F078D9A009025DD /* DifficultListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DifficultListController.swift; sourceTree = "<group>"; };
 		0A644DA21F07A0E4009025DD /* hot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hot.png; sourceTree = "<group>"; };
+		0A667BC82084B14800594BE7 /* LiveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveController.swift; sourceTree = "<group>"; };
+		0A667BCA2085CF4E00594BE7 /* LiveLIstController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLIstController.swift; sourceTree = "<group>"; };
+		0A667BCC2085DE7200594BE7 /* cover2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cover2.jpg; sourceTree = "<group>"; };
+		0A667BCD2085DE7300594BE7 /* cover1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cover1.jpg; sourceTree = "<group>"; };
+		0A667BD02085EA1B00594BE7 /* 播放.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "播放.png"; sourceTree = "<group>"; };
+		0A667BD42085F34800594BE7 /* 暂停.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "暂停.png"; path = "../../../../Users/huangweisheng/Downloads/暂停.png"; sourceTree = "<group>"; };
 		0A6A23A51EEC70A500A1AC5B /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		0A6A23A91EEE8FCD00A1AC5B /* ExamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamViewController.swift; sourceTree = "<group>"; };
 		0A6A23AB1EEE95BE00A1AC5B /* QuestionCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCollectionView.swift; sourceTree = "<group>"; };
@@ -575,6 +587,8 @@
 				0A125A8B1F29CBDB00FDD4F4 /* SettingsController.swift */,
 				0A125A8F1F29D1FF00FDD4F4 /* ChangePasswordController.swift */,
 				0A0C570C1F4D70AE008551D3 /* ChangePersonInfoController.swift */,
+				0A667BC82084B14800594BE7 /* LiveController.swift */,
+				0A667BCA2085CF4E00594BE7 /* LiveLIstController.swift */,
 			);
 			name = Myself;
 			sourceTree = "<group>";
@@ -729,6 +743,10 @@
 		0AC3B98A1EE5868E00227194 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				0A667BD02085EA1B00594BE7 /* 播放.png */,
+				0A667BD42085F34800594BE7 /* 暂停.png */,
+				0A667BCD2085DE7300594BE7 /* cover1.jpg */,
+				0A667BCC2085DE7200594BE7 /* cover2.jpg */,
 				0AF677DB20491CC8002239A3 /* excel.png */,
 				0A0FA8851F0F615300DFEA7E /* video.png */,
 				0A0FA8861F0F615300DFEA7E /* picture.png */,
@@ -1088,6 +1106,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A667BD52085F34900594BE7 /* 暂停.png in Resources */,
 				0AC3B9951EE6A55600227194 /* password.png in Resources */,
 				0A644DA31F07A0E4009025DD /* hot.png in Resources */,
 				0A15D51A1F0C9A1E00908B7F /* left.png in Resources */,
@@ -1145,9 +1164,12 @@
 				0A42F8351F1E01BE001DF281 /* splashlogo.png in Resources */,
 				0AEBF3C51F20804700520E27 /* 出科.png in Resources */,
 				0A644D821F0209B5009025DD /* lightStar.png in Resources */,
+				0A667BCE2085DE7400594BE7 /* cover2.jpg in Resources */,
 				0AC3B9961EE6A55600227194 /* loginId.png in Resources */,
+				0A667BD12085EA1C00594BE7 /* 播放.png in Resources */,
 				0A15D5551F0EA52D00908B7F /* 考评-灰.png in Resources */,
 				0A42F8331F1E01B2001DF281 /* artboard.png in Resources */,
+				0A667BCF2085DE7400594BE7 /* cover1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1197,6 +1219,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BMPlayer/BMPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMRefresh/GTMRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/HappyDNS/HappyDNS.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftCharts/SwiftCharts.framework",
@@ -1208,6 +1231,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HappyDNS.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCharts.framework",
@@ -1227,6 +1251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4FF1A931F94DF7D009C6685 /* UIImageView+WebCache.m in Sources */,
+				0A667BC92084B14800594BE7 /* LiveController.swift in Sources */,
 				B4FF1A951F94DF7D009C6685 /* UIView+WebCacheOperation.m in Sources */,
 				0AC49F621F347D290028A65C /* UIImage.swift in Sources */,
 				0AC3BCAD1EE97F2400227194 /* SearchViewController.swift in Sources */,
@@ -1284,6 +1309,7 @@
 				0A42F8311F1D2C07001DF281 /* AnwsersItem.swift in Sources */,
 				0A42F82B1F1C9520001DF281 /* TaskApplyImageCollectionView.swift in Sources */,
 				0AC3B9471EE4732700227194 /* CircleDataView.swift in Sources */,
+				0A667BCB2085CF4E00594BE7 /* LiveLIstController.swift in Sources */,
 				0AC3B9811EE53F5900227194 /* String.swift in Sources */,
 				0A15D5161F0BF5FB00908B7F /* QQStylePullingIndicator.swift in Sources */,
 				0AC3BCA41EE94DA300227194 /* LBXScanWrapper.swift in Sources */,

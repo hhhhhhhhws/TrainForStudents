@@ -14,4 +14,5 @@
 #import "MJRefreshNormalHeader.h"
 #import "MBProgressHUD+MJ.h"
 #import "MBProgressHUD.h"
+#import "PLPlayerKit/PLPlayerKit.h"
 #endif

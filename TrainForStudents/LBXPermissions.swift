@@ -56,7 +56,6 @@ class LBXPermissions: NSObject {
 
             if( ALAssetsLibrary.authorizationStatus() != ALAuthorizationStatus.denied ){
                 bResult = true
-                
             }
             
         }else{

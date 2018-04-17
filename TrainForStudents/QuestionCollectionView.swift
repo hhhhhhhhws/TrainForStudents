@@ -82,6 +82,8 @@ class QuestionCollectionView : UIViewController,  UICollectionViewDelegate , UIC
         result["score"] = json["score"].stringValue
         result["answervalue"] = json["answervalue"].stringValue
         result["parentid"] = json["parentid"].stringValue
+        result["title"] = json["title"].stringValue
+        result["inputanswer"] = ""
         return result
         
     }

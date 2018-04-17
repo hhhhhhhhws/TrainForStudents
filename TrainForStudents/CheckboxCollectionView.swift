@@ -37,8 +37,8 @@ class CheckboxCollectionView : BasePeiwuCollectionView{
             cell.tag = 0
             //获取数据
             data = a[indexPath.item - 1]
-            let anwserDic = parentView?.answerDic[data["questionid"].stringValue]
-            var inputAnwsers = [""]
+            let answerDic = parentView?.answerDic[data["questionid"].stringValue]
+            var inputAnswers = [""]
             
             //渲染选项
             let btn = (cell.viewWithTag(10001) as? UIButton)!
@@ -55,11 +55,13 @@ class CheckboxCollectionView : BasePeiwuCollectionView{
             lbl.frame.origin = CGPoint(x: lbl.frame.origin.x, y: y)
             lbl.frame.size = CGSize(width: lbl.frame.size.width, height: getHeightForLabel(lbl: lbl))
             
-            if anwserDic != nil {
-                inputAnwsers = (anwserDic?["inputanswer"]?.components(separatedBy: ","))!
+            if answerDic != nil {
+                if answerDic?["inputanswer"] != nil{
+                    inputAnswers = (answerDic?["inputanswer"]?.components(separatedBy: ","))!
+                }   
             }
             
-            for ia in inputAnwsers {
+            for ia in inputAnswers {
                 if btn.currentTitle == ia{
                     btn.setTitleColor(UIColor.white, for: .normal)
                     btn.backgroundColor = UIColor.init(hex: "ffc84c")
@@ -121,11 +123,11 @@ class CheckboxCollectionView : BasePeiwuCollectionView{
         let cell = collectionView.cellForItem(at: indexPath)
         let btn = cell?.viewWithTag(10001) as! UIButton
         let questionId = jsonDataSource["questionsid"].stringValue
-        var anwserDic = parentView?.answerDic[questionId]
-        if anwserDic == nil{
-            anwserDic = getAnswerJson(json: jsonDataSource)
+        var answerDic = parentView?.answerDic[questionId]
+        if answerDic == nil{
+            answerDic = getAnswerJson(json: jsonDataSource)
         }
-        var ia = anwserDic?["inputanswer"]
+        var ia = answerDic?["inputanswer"]
         if cell?.tag == 0 { //未选中
             btn.setTitleColor(UIColor.white, for: .normal)
             btn.backgroundColor = UIColor.init(hex: "ffc84c")
@@ -156,12 +158,12 @@ class CheckboxCollectionView : BasePeiwuCollectionView{
             //ia.remove
             cell?.tag = 0
         }
-        anwserDic?["inputanswer"] = ia
-        parentView?.answerDic[questionId] = anwserDic
+        answerDic?["inputanswer"] = ia
+        parentView?.answerDic[questionId] = answerDic
 
-        let inputanswer = anwserDic?["inputanswer"]
+        let inputanswer = answerDic?["inputanswer"]
 
-        if inputanswer != nil{
+        if inputanswer != nil && inputanswer != ""{
             let cell = collectionView.cellForItem(at: IndexPath.init(row: 0, section: 0))
             let lbl = (cell?.viewWithTag(10001) as? UILabel)!
             var title = jsonDataSource["indexname"].stringValue + " " + jsonDataSource["title"].stringValue

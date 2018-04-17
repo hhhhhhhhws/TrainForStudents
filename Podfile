@@ -12,6 +12,6 @@ target ’TrainForStudents’ do
   pod 'BMPlayer'
   pod 'GTMRefresh'
   pod 'JPush'
+  pod 'PLPlayerKit'
   
-
 end

@@ -62,13 +62,24 @@ class ExamViewController : MyBaseUIViewController{
         resultView.isHidden = true
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        var cacheAnswerDic = UserDefaults.Exam.any(forKey: .answerDic) as! [String : [String : Dictionary<String, String>]]
+        cacheAnswerDic[taskId] = answerDic
+        // 将当前答案保存到应用缓存中
+        UserDefaults.Exam.set(value: cacheAnswerDic, forKey: .answerDic)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         //读取应用中缓存的答案
         let dic = UserDefaults.Exam.any(forKey: .answerDic)
         if dic != nil{
-            answerDic = dic as! [String : Dictionary<String, String>]
+            let cacheAnswerDic = dic as! [String : [String : Dictionary<String, String>]]
+            if cacheAnswerDic[taskId] != nil{
+                self.answerDic = cacheAnswerDic[taskId]!
+            }
+            
         }
         
         
@@ -89,6 +100,8 @@ class ExamViewController : MyBaseUIViewController{
         
     }
     
+    
+    
     ///返回按钮
     @IBAction func btn_back_inside(_ sender: UIButton) {
         
@@ -96,7 +109,7 @@ class ExamViewController : MyBaseUIViewController{
                   okHandler:{action in
                     
                 // 将当前答案保存到应用缓存中
-                UserDefaults.Exam.set(value: self.answerDic, forKey: .answerDic)
+//                UserDefaults.Exam.set(value: self.answerDic, forKey: .answerDic)
                 self.dismiss(animated: true, completion: nil)
                     
         } , cancelHandler:{action in
@@ -107,9 +120,6 @@ class ExamViewController : MyBaseUIViewController{
     
     //上一题
     @IBAction func btn_prev_inside(_ sender: UIButton) {
-        
-        // 将当前答案保存到应用缓存中
-        UserDefaults.Exam.set(value: answerDic, forKey: .answerDic)
         
         questionIndex -= 1
         //如果已是当前题型最后一题 则切换到下一题型
@@ -129,29 +139,91 @@ class ExamViewController : MyBaseUIViewController{
         btn_complete.isHidden = true
     }
     
+    func isAnswered(qid : String , quesionJson : JSON , initAnswer : Bool = true) {
+        myConfirm(self, message: "本题未做完,是否进入下一题" , okHandler : { action in
+            if initAnswer{
+                let qcv = QuestionCollectionView()
+                self.answerDic[qid] = qcv.getAnswerJson(json: quesionJson)
+            }
+            self.nextQeustion()
+        })
+        
+    }
+    
     //下一题
     @IBAction func btn_next_inside(_ sender: UIButton) {
         
-        // 将当前答案保存到应用缓存中
-        UserDefaults.Exam.set(value: answerDic, forKey: .answerDic)
+        //判断当前题目是否已全部作答
+        let curQuestion = questionView.jsonDataSource
+        let qType = curQuestion["type"].intValue
+        if qType == 3 {    //配伍题
+            var isComplete = true
+            for sbq in curQuestion["sub_questions"].arrayValue {
+                let qid = sbq["questionsid"].stringValue
+                let a = answerDic[qid]
+                if a == nil || (a!["inputanswer"] != nil){
+                    isComplete = false
+                    isAnswered(qid: qid,quesionJson: curQuestion,initAnswer: a == nil)
+                }
+            }
+            if isComplete{
+                nextQeustion()
+            }
+        }else{
+            let qid = curQuestion["questionsid"].stringValue
+            if(qType == 5){   //填空题
+                let a = answerDic[qid]
+                let qid = curQuestion["questionsid"].stringValue
+                if a == nil {
+                    isAnswered(qid: qid,quesionJson: curQuestion)
+                }else{
+                    let inputanswer = a!["inputanswer"]
+                    let sbStr = inputanswer?.split(separator: ",")
+                    var isComplete = true
+                    for str in sbStr! { //根据填空题答案的格式来判断是否完成题目
+                        if str == "" || str == " "{
+                            isComplete = false
+                            isAnswered(qid: qid,quesionJson: curQuestion,initAnswer: false)
+                        }
+                    }
+                    if isComplete{
+                        nextQeustion()
+                    }
+                    
+                }
+            }else{  //其余题型
+                let qid = curQuestion["questionsid"].stringValue
+                let a = answerDic[qid]
+                if a == nil || a!["inputanswer"] == nil || a!["inputanswer"] == ""{
+                    isAnswered(qid: qid,quesionJson: curQuestion)
+                }else{
+                    nextQeustion()
+                }
+            }
+            
+        }
         
-        questionIndex += 1
+    }
+    
+    func nextQeustion(){
+        //TODO 进入下一题的代码写这里
+        self.questionIndex += 1
         //如果已是当前题型最后一题 则切换到下一题型
-        if questionIndex >= currentType["questions"].arrayValue.count{
-            switchQuestionType(isNext: true)
+        if self.questionIndex >= self.currentType["questions"].arrayValue.count{
+            self.self.switchQuestionType(isNext: true)
         }
         //获取当前题目
-        let question = (currentType["questions"].arrayValue)[questionIndex]
+        let question = (self.currentType["questions"].arrayValue)[self.questionIndex]
         //重新初始化展示题目的collection
-        initCollection()
+        self.initCollection()
         //展示考题
-        questionView.jsonDataSource = question
-        questionCollection.reloadData()
+        self.questionView.jsonDataSource = question
+        self.questionCollection.reloadData()
         //设置按钮
-        btn_next.isEnabled = !isLastQuestion()
-        btn_prev.isEnabled = !isFirstQuestion()
-        if isLastQuestion() {
-            btn_complete.isHidden = false
+        self.btn_next.isEnabled = !self.isLastQuestion()
+        self.btn_prev.isEnabled = !self.isFirstQuestion()
+        if self.isLastQuestion() {
+            self.btn_complete.isHidden = false
         }
     }
     
@@ -174,11 +246,11 @@ class ExamViewController : MyBaseUIViewController{
     
     //提交考试答案
     func submitAnswer(){
-//        MBProgressHUD.showAdded(to: self.view, animated: true)
-        var anwserList = [Dictionary<String, String>]()
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        var answerList = [Dictionary<String, String>]()
         
         for (_,v) in answerDic{
-            anwserList.append(v)
+            answerList.append(v)
         }
         
         var url = SERVER_PORT + "rest/exercises/commitPaper.do"
@@ -187,9 +259,9 @@ class ExamViewController : MyBaseUIViewController{
             url = SERVER_PORT + "rest/exercises/theoryCommitPaper.do"
         }
         //print(exerciseId,taskId)
-        print(anwserList)
+        //print(anwserList)
         
-        myPostRequest(url,["commit_questions":anwserList , "exercisesid": exerciseId , "taskid" : taskId, "passscore" :passscore, "request_source": "request_ios"] , timeoutInterval : 120).responseJSON(completionHandler: { resp in
+        myPostRequest(url,["commit_questions":answerList , "exercisesid": exerciseId , "taskid" : taskId, "passscore" :passscore, "request_source": "request_ios"] , timeoutInterval : 120).responseJSON(completionHandler: { resp in
             MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
             switch  resp.result{
             case .success(let result):
@@ -204,6 +276,8 @@ class ExamViewController : MyBaseUIViewController{
                         lbl.isHidden = true
                         lbl = self.resultView.viewWithTag(20001) as! UILabel
                         lbl.text = "已提交成功，请等待老师阅卷"
+                        let btn = self.resultView.viewWithTag(40002) as! UIButton
+                        btn.isHidden = false
                     }else{
                         if json["ispass"].stringValue == "1"{
                             let imageView = self.resultView.viewWithTag(10001) as! UIImageView

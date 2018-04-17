@@ -46,7 +46,7 @@ class PeiwuCollectionView : QuestionCollectionView {
 //                }
                 //获取题目对应被选的答案
                 let inputanswer = parentView?.answerDic[qid]?["inputanswer"]
-                if inputanswer != nil{
+                if inputanswer != nil && inputanswer != ""{
                     //在题目结尾展示答案
                     title.insert(Character.init(inputanswer!), at: title.index(before: title.endIndex))
                     lbl.text = title

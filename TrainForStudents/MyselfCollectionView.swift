@@ -137,8 +137,8 @@ class MyselfCollectionView : UIViewController,  UICollectionViewDelegate , UICol
             myPresentView(parentView!, viewName: "difficultListView")
             break
         case 50004:
-            //远程学习
-            myAlert(self.parentView!, message: "暂未开放!")
+            //直播
+            myPresentView(parentView!, viewName: "liveListView")
             break
         default:
             break

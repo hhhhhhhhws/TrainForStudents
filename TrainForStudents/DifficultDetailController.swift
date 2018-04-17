@@ -26,7 +26,6 @@ class DifficultDetailController: MyBaseUIViewController {
         tbl_reply.estimatedRowHeight = 510
         tbl_reply.rowHeight = UITableViewAutomaticDimension
         
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

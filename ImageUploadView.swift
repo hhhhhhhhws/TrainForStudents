@@ -17,7 +17,7 @@ class ImageUploadView :UIViewController , UITableViewDelegate , UITableViewDataS
     var parentView : AssistantController? = nil
     var images = [UIImage]()
     var willUploadImagesIndex = [Int]()
-    let uploadImageMaxLenth = 1024 //kb
+    let uploadImageMaxLenth = 1024*5 //kb
     var uploadImages = [String : UIImage]()
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -36,6 +36,7 @@ class ImageUploadView :UIViewController , UITableViewDelegate , UITableViewDataS
             
             //let cell = tableView.dequeueReusableCell(withIdentifier: cellName)!
             let cell = (parentView?.tbl_imageUpload.dequeueReusableCell(withIdentifier: cellName))!
+            cell.selectionStyle = .none
             let btn = cell.viewWithTag(10001) as! UIButton
             btn.addTarget(self, action: #selector(selectImage), for: .touchUpInside)
             
@@ -63,6 +64,7 @@ class ImageUploadView :UIViewController , UITableViewDelegate , UITableViewDataS
         }else{
             cellName = "c2"
             let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath)
+            cell.selectionStyle = .none
             let data = jsonDataSource[indexPath.section - 1]
             var lbl = cell.viewWithTag(10001) as! UILabel
             lbl.text = data["context"].stringValue
@@ -132,7 +134,7 @@ class ImageUploadView :UIViewController , UITableViewDelegate , UITableViewDataS
                 self.parentView?.present(picker, animated: true, completion: nil)
                 
             }else{
-                myAlert(self, message: "没有相机权限")
+                myAlert(self.parentView!, message: "没有相机权限")
             }
             
         }))

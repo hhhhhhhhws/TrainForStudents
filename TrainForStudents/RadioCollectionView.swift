@@ -39,7 +39,7 @@ class RadioCollectionView : PeiwuCollectionView{
             }
             //获取题目对应被选的答案
             let inputanswer = parentView?.answerDic[qid]?["inputanswer"]
-            if inputanswer != nil{
+            if inputanswer != nil && inputanswer != ""{
                 //在题目结尾展示答案
                 title.insert(Character.init(inputanswer!), at: title.endIndex)
                 lbl.text = title
@@ -54,7 +54,7 @@ class RadioCollectionView : PeiwuCollectionView{
             //获取数据
             data = a[indexPath.item - 1]
             let questionId = jsonDataSource["questionsid"].stringValue
-            var anwserDic = parentView?.answerDic[questionId]
+            var answerDic = parentView?.answerDic[questionId]
             //渲染选项
             let btn = (cell.viewWithTag(10001) as? UIButton)!
             btn.layer.cornerRadius = btn.frame.width / 2
@@ -75,8 +75,8 @@ class RadioCollectionView : PeiwuCollectionView{
             lbl.frame.origin = CGPoint(x: lbl.frame.origin.x, y: y)
             lbl.frame.size = CGSize(width: lbl.frame.size.width, height: getHeightForLabel(lbl: lbl))
             
-            if anwserDic != nil{
-                if btn.currentTitle == anwserDic!["inputanswer"]{
+            if answerDic != nil{
+                if btn.currentTitle == answerDic!["inputanswer"]{
                     btn.setTitleColor(UIColor.white, for: .normal)
                     btn.backgroundColor = UIColor.init(hex: "ffc84c")
                 }else{
@@ -140,9 +140,9 @@ class RadioCollectionView : PeiwuCollectionView{
             return
         }
         let questionId = jsonDataSource["questionsid"].stringValue
-        var anwserDic = parentView?.answerDic[questionId]
-        if anwserDic == nil{
-            anwserDic = getAnswerJson(json: jsonDataSource)
+        var answerDic = parentView?.answerDic[questionId]
+        if answerDic == nil{
+            answerDic = getAnswerJson(json: jsonDataSource)
         }
         
         let cell = collectionView.cellForItem(at: indexPath)
@@ -150,15 +150,15 @@ class RadioCollectionView : PeiwuCollectionView{
         if cell?.tag == 0 {
             btn.setTitleColor(UIColor.white, for: .normal)
             btn.backgroundColor = UIColor.init(hex: "ffc84c")
-            anwserDic?["inputanswer"] = btn.currentTitle
+            answerDic?["inputanswer"] = btn.currentTitle
             cell?.tag = 1
         }else{
             btn.setTitleColor(UIColor.init(hex: "5ea3f3"), for: .normal)
             btn.backgroundColor = UIColor.init(hex: "f5f8fb")
-            anwserDic?["inputanswer"] = ""
+            answerDic?["inputanswer"] = ""
             cell?.tag = 0
         }
-        parentView?.answerDic[questionId] = anwserDic
+        parentView?.answerDic[questionId] = answerDic
         parentView?.questionCollection.reloadData()
         
     }
