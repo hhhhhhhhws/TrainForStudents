@@ -14,10 +14,10 @@
          contextName = "LBXScanWrapper.init(videoPreView : UIView, objType : [String], isCaptureImg : Bool, cropRect : CGRect, success : ([LBXScanResult]) -&gt; ()) -&gt; LBXScanWrapper:LBXScanWrapper.swift">
          <PersistentStrings>
             <PersistentString
-               value = "CGRect.zero">
+               value = "cropRect.equalTo(CGRect.zero)">
             </PersistentString>
             <PersistentString
-               value = "cropRect.equalTo(CGRect.zero)">
+               value = "CGRect.zero">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -33,13 +33,13 @@
          contextName = "PeiwuCollectionView.collectionView(UICollectionView, didSelectItemAt : IndexPath) -&gt; ():PeiwuCollectionView.swift">
          <PersistentStrings>
             <PersistentString
+               value = "parentView?.anwserDic[selectedQuestionId]">
+            </PersistentString>
+            <PersistentString
                value = "selectedQuestionId">
             </PersistentString>
             <PersistentString
                value = "q[&quot;questionsid&quot;].stringValue">
-            </PersistentString>
-            <PersistentString
-               value = "parentView?.anwserDic[selectedQuestionId]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -107,13 +107,13 @@
          contextName = "MyselfCollectionView.collectionView(UICollectionView, cellForItemAt : IndexPath) -&gt; UICollectionViewCell:MyselfCollectionView.swift">
          <PersistentStrings>
             <PersistentString
+               value = "jsonDataSource[&quot;c0&quot;]">
+            </PersistentString>
+            <PersistentString
                value = "btn.imageView?.frame.debugDescription">
             </PersistentString>
             <PersistentString
                value = "indexPath.item">
-            </PersistentString>
-            <PersistentString
-               value = "jsonDataSource[&quot;c0&quot;]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -158,6 +158,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "LiveMessageTableView.tableView(_:cellForRowAt:):LiveMessageTableView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "text[indexPath.item]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "DirectoryCollectionView.collectionView(UICollectionView, didSelectItemAt : IndexPath) -&gt; ():DirectoryCollectionView.swift">
          <PersistentStrings>
             <PersistentString
@@ -179,6 +187,14 @@
             </PersistentString>
             <PersistentString
                value = "txt_password.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "LiveMessageCollectionView.collectionView(_:cellForItemAt:):LiveMessageCollectionView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "lbl.text">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -315,7 +331,12 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "myPostRequest(String, [String : Any]?, method : HTTPMethod) -&gt; DataRequest:extension.swift">
+         contextName = "VideoController.viewDidLoad() -&gt; ():VideoController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "headData[&quot;url&quot;].stringValue">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "UndoneCollectionView.collectionView(UICollectionView, numberOfItemsInSection : Int) -&gt; Int:UndoneCollectionView.swift">
@@ -334,6 +355,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in LiveController.receiverNotification():LiveController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "playerDefaultWidth">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "WishAddController.textFieldShouldBeginEditing(UITextField) -&gt; Bool:WishAddController.swift">
          <PersistentStrings>
             <PersistentString
@@ -342,20 +371,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "VideoController.viewDidLoad() -&gt; ():VideoController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "headData[&quot;url&quot;].stringValue">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in LiveController.receiverNotification():LiveController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "playerDefaultWidth">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "myPostRequest(String, [String : Any]?, method : HTTPMethod) -&gt; DataRequest:extension.swift">
       </ContextState>
       <ContextState
          contextName = "HistoryEvaluationController.(getEvaluationDatasource() -&gt; ()).(closure #1):HistoryEvaluationController.swift">
@@ -506,13 +522,13 @@
          contextName = "MyselfController.(getMySelfData() -&gt; ()).(closure #1):MyselfController.swift">
          <PersistentStrings>
             <PersistentString
+               value = "j[&quot;c0&quot;] = JSON.init([&quot;22&quot;:&quot;333&quot;])">
+            </PersistentString>
+            <PersistentString
                value = "self.selfView.jsonDataSource[&quot;c0&quot;]">
             </PersistentString>
             <PersistentString
                value = "json[&quot;data&quot;]">
-            </PersistentString>
-            <PersistentString
-               value = "j[&quot;c0&quot;] = JSON.init([&quot;22&quot;:&quot;333&quot;])">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -623,10 +639,10 @@
          contextName = "CheckboxCollectionView.collectionView(UICollectionView, didSelectItemAt : IndexPath) -&gt; ():CheckboxCollectionView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "String(describing: ia?[(ia?.startIndex)!])">
+               value = "cell?.tag">
             </PersistentString>
             <PersistentString
-               value = "anwserDic[&quot;inputanswer&quot;]">
+               value = "btn.currentTitle == String(describing: ia![(ia?.startIndex)!])">
             </PersistentString>
             <PersistentString
                value = "ia?[(ia?.startIndex)!]">
@@ -635,10 +651,10 @@
                value = "btn.currentTitle">
             </PersistentString>
             <PersistentString
-               value = "cell?.tag">
+               value = "String(describing: ia?[(ia?.startIndex)!])">
             </PersistentString>
             <PersistentString
-               value = "btn.currentTitle == String(describing: ia![(ia?.startIndex)!])">
+               value = "anwserDic[&quot;inputanswer&quot;]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

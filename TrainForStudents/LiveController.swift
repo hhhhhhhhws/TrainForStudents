@@ -11,17 +11,35 @@ import Foundation
 
 class LiveController : MyBaseUIViewController,PLPlayerDelegate {
     
+    @IBOutlet weak var tbl_liveMessageList: UITableView!
+    
+    //教材
+    @IBOutlet weak var liveMessageCollection: UICollectionView!
+    
+    let liveMessageView = LiveMessageCollectionView()
+    
     var player : PLPlayer = PLPlayer()
+//    let liveMessageTableView = LiveMessageTableView()
     var button = UIButton()
     var back = UIButton()
     var streamURL : URL!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         //支持横屏
         appDelegate.blockRotation = true
+        
+//        liveMessageTableView.parentView = self
+//        tbl_liveMessageList.dataSource = liveMessageTableView
+//        tbl_liveMessageList.delegate = liveMessageTableView
+//        tbl_liveMessageList.separatorStyle = .none
+//        tbl_liveMessageList.rowHeight = UITableViewAutomaticDimension
+        
+        liveMessageView.parentView = self
+        liveMessageCollection.dataSource = liveMessageView
+        liveMessageCollection.delegate = liveMessageView
 
+        MyNotificationUtil.addKeyBoardWillChangeNotification(self)
         NotificationCenter.default.addObserver(self, selector: #selector(LiveController.receiverNotification), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
@@ -29,6 +47,11 @@ class LiveController : MyBaseUIViewController,PLPlayerDelegate {
         super.viewDidLoad()
         
         createView()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        player.stop()
     }
     
     func createView(){
@@ -68,7 +91,7 @@ class LiveController : MyBaseUIViewController,PLPlayerDelegate {
         
         back = UIButton.init(type: .custom)
         back.frame = CGRect(x: 10, y: 25, width: 40, height: 20)
-        //back.setTitle("返回", for: .normal)
+        back.setTitle("返回", for: .normal)
         back.setImage(UIImage(named: "返回.png"), for: .normal)
         back.alpha = 0.7
         back.addTarget(self, action: #selector(btn_back_event(button:)), for: .touchUpInside)

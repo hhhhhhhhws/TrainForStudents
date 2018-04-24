@@ -12,6 +12,10 @@ class LiveListController: MyBaseUIViewController,UITableViewDataSource,UITableVi
     
     @IBOutlet weak var tbl_liveList: UITableView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,6 +27,7 @@ class LiveListController: MyBaseUIViewController,UITableViewDataSource,UITableVi
         tbl_liveList.delegate = self
         tbl_liveList.dataSource = self
         tbl_liveList.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15)
+        tbl_liveList.estimatedRowHeight = 270
         tbl_liveList.rowHeight = UITableViewAutomaticDimension
     }
     
@@ -50,7 +55,7 @@ class LiveListController: MyBaseUIViewController,UITableViewDataSource,UITableVi
         let imgView = cell?.viewWithTag(20001) as! UIImageView
         
         if indexPath.item == 0{
-            lbl.text = "九华云直播平台 -- 浙江医院呼吸内科正在直播一场很厉害的教学活动"
+            lbl.text = "九华云直播平台 -- 浙江医院呼吸内科正在直播一场很厉害的教学活动巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉"
             imgView.image = UIImage(named: "cover1.jpg")
             
         }else if indexPath.item == 1{
@@ -62,7 +67,10 @@ class LiveListController: MyBaseUIViewController,UITableViewDataSource,UITableVi
         lbl.frame.size = CGSize(width: lbl.frame.width, height: lbl.frame.height.multiplied(by: CGFloat(num!)))
         
         imgView.snp.makeConstraints({(make) in
-            make.height.width.equalTo(imgView)
+//            make.height.equalTo(imgView.frame.width/16*9)
+//            make.height.equalTo(194)
+//            make.width.equalTo(100)
+//            make.width.equalTo(imgView)
             make.top.equalTo(lbl.snp.bottom).offset(10)
             make.left.equalToSuperview().offset(20)
             make.bottom.equalToSuperview().offset(-35)
@@ -84,13 +92,13 @@ class LiveListController: MyBaseUIViewController,UITableViewDataSource,UITableVi
     }
     
     //cell的高度
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 270
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 270
+//    }
     
     //section的高度
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 1
+        return 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

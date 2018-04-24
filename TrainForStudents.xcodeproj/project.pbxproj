@@ -108,6 +108,7 @@
 		0A667BCF2085DE7400594BE7 /* cover1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A667BCD2085DE7300594BE7 /* cover1.jpg */; };
 		0A667BD12085EA1C00594BE7 /* 播放.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A667BD02085EA1B00594BE7 /* 播放.png */; };
 		0A667BD52085F34900594BE7 /* 暂停.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A667BD42085F34800594BE7 /* 暂停.png */; };
+		0A667BD72087C09600594BE7 /* LiveMessageTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A667BD62087C09600594BE7 /* LiveMessageTableView.swift */; };
 		0A6A23A61EEC70A500A1AC5B /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A23A51EEC70A500A1AC5B /* ScannerViewController.swift */; };
 		0A6A23AA1EEE8FCD00A1AC5B /* ExamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A23A91EEE8FCD00A1AC5B /* ExamViewController.swift */; };
 		0A6A23AC1EEE95BE00A1AC5B /* QuestionCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A23AB1EEE95BE00A1AC5B /* QuestionCollectionView.swift */; };
@@ -131,6 +132,7 @@
 		0A7818FA1F3303260072CF16 /* 角标.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A7818F91F3303260072CF16 /* 角标.png */; };
 		0A90EFB11EFA20B400B4CC7A /* CheckboxCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90EFB01EFA20B400B4CC7A /* CheckboxCollectionView.swift */; };
 		0A91142F201D60D2001A1936 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91142E201D60D2001A1936 /* UserDefaults.swift */; };
+		0A9605D2208F0AE400A1ABB4 /* LiveMessageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9605D1208F0AE400A1ABB4 /* LiveMessageCollectionView.swift */; };
 		0AC3B9331EE4730B00227194 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3B9321EE4730B00227194 /* AppDelegate.swift */; };
 		0AC3B9351EE4730B00227194 /* TurnCenterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3B9341EE4730B00227194 /* TurnCenterController.swift */; };
 		0AC3B9371EE4730B00227194 /* ExamCenterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3B9361EE4730B00227194 /* ExamCenterController.swift */; };
@@ -329,6 +331,7 @@
 		0A667BCD2085DE7300594BE7 /* cover1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cover1.jpg; sourceTree = "<group>"; };
 		0A667BD02085EA1B00594BE7 /* 播放.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "播放.png"; sourceTree = "<group>"; };
 		0A667BD42085F34800594BE7 /* 暂停.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "暂停.png"; path = "../../../../Users/huangweisheng/Downloads/暂停.png"; sourceTree = "<group>"; };
+		0A667BD62087C09600594BE7 /* LiveMessageTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveMessageTableView.swift; sourceTree = "<group>"; };
 		0A6A23A51EEC70A500A1AC5B /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		0A6A23A91EEE8FCD00A1AC5B /* ExamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamViewController.swift; sourceTree = "<group>"; };
 		0A6A23AB1EEE95BE00A1AC5B /* QuestionCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCollectionView.swift; sourceTree = "<group>"; };
@@ -352,6 +355,7 @@
 		0A7818F91F3303260072CF16 /* 角标.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "角标.png"; sourceTree = "<group>"; };
 		0A90EFB01EFA20B400B4CC7A /* CheckboxCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxCollectionView.swift; sourceTree = "<group>"; };
 		0A91142E201D60D2001A1936 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		0A9605D1208F0AE400A1ABB4 /* LiveMessageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveMessageCollectionView.swift; sourceTree = "<group>"; };
 		0AC3B92F1EE4730B00227194 /* TrainForStudents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainForStudents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AC3B9321EE4730B00227194 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AC3B9341EE4730B00227194 /* TurnCenterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnCenterController.swift; sourceTree = "<group>"; };
@@ -607,6 +611,8 @@
 				0A15D50C1F0B8F6000908B7F /* OnlineAskDetailCollectionView.swift */,
 				0A15D5291F0E5F6100908B7F /* MeterialListCollectionView.swift */,
 				0A125A8D1F29CC6400FDD4F4 /* SettingsCollectionView.swift */,
+				0A667BD62087C09600594BE7 /* LiveMessageTableView.swift */,
+				0A9605D1208F0AE400A1ABB4 /* LiveMessageCollectionView.swift */,
 			);
 			name = Collection;
 			sourceTree = "<group>";
@@ -1274,7 +1280,9 @@
 				0A644D931F04E625009025DD /* WishDetailController.swift in Sources */,
 				0A15D5201F0CC81900908B7F /* MyselfCollectionView.swift in Sources */,
 				B468B7C11FCA9BA000ECF396 /* MJRefreshAutoNormalFooter.m in Sources */,
+				0A667BD72087C09600594BE7 /* LiveMessageTableView.swift in Sources */,
 				B468B7C51FCA9BA000ECF396 /* MJRefreshBackStateFooter.m in Sources */,
+				0A9605D2208F0AE400A1ABB4 /* LiveMessageCollectionView.swift in Sources */,
 				0AC3B99F1EE8F9A100227194 /* UndoneCollectionView.swift in Sources */,
 				B4FF1A921F94DF7D009C6685 /* UIImageView+HighlightedWebCache.m in Sources */,
 				0AFE94281F209D46009C4CDF /* MyBaseCollectionView.swift in Sources */,
