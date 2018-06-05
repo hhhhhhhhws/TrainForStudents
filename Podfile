@@ -12,6 +12,6 @@ target ’TrainForStudents’ do
   pod 'BMPlayer'
   pod 'GTMRefresh'
   pod 'JPush'
-  pod 'PLPlayerKit'
+  pod "PLPlayerKit", :podspec => 'https://raw.githubusercontent.com/pili-engineering/PLPlayerKit/master/PLPlayerKit-Universal.podspec'
   
 end

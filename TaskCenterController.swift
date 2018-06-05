@@ -91,8 +91,15 @@ class TaskCenterController: MyBaseUIViewController , AVCaptureMetadataOutputObje
         
         btn_scanner.layer.cornerRadius = btn_scanner.frame.width/2
         
-        undoneCollection.gtm_addRefreshHeaderView(delegate: undoneView)
-        undoneCollection.gtm_addLoadMoreFooterView(delegate: undoneView)
+        undoneCollection.gtm_addRefreshHeaderView(refreshBlock:{
+            self.undoneView.refresh()
+        })
+        undoneCollection.gtm_addLoadMoreFooterView(loadMoreBlock: {
+            self.undoneView.loadMore()
+        })
+        
+//        undoneCollection.gtm_addRefreshHeaderView(refreshBlock: undoneView.refresh())
+//        undoneCollection.gtm_addLoadMoreFooterView(loadMoreBlock: undoneView.loadMore())
         
         undoneCollection.registerNoDataCellView()
         undoneCollection.delegate = undoneView
@@ -100,8 +107,12 @@ class TaskCenterController: MyBaseUIViewController , AVCaptureMetadataOutputObje
         undoneView.parentView = self
         
         overCollection.registerNoDataCellView()
-        overCollection.gtm_addRefreshHeaderView(delegate: overView)
-        overCollection.gtm_addLoadMoreFooterView(delegate: overView)
+        overCollection.gtm_addRefreshHeaderView(refreshBlock: {
+            self.overView.refresh()
+        })
+        overCollection.gtm_addLoadMoreFooterView(loadMoreBlock: {
+            self.overView.loadMore()
+        })
         overCollection.delegate = overView
         overCollection.dataSource = overView
         overView.parentView = self
@@ -327,7 +338,8 @@ class TaskCenterController: MyBaseUIViewController , AVCaptureMetadataOutputObje
     func getUndoneCollectionDatasource(){
         
         if undoneView.isLastPage{
-            return 
+            self.undoneCollection.endLoadMore(isNoMoreData: true)
+            return
         }
         
         if searchParam == nil{
@@ -382,6 +394,7 @@ class TaskCenterController: MyBaseUIViewController , AVCaptureMetadataOutputObje
     func getOverCollectionDatasource(){
         
         if overView.isLastPage{
+            self.overCollection.endLoadMore(isNoMoreData: true)
             return
         }
         

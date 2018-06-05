@@ -62,8 +62,12 @@ class OnlineAskController: MyBaseUIViewController {
         onlineAskCollection.delegate = askView
         onlineAskCollection.dataSource = askView
         onlineAskCollection.collectionViewLayout = collectionLayout
-        onlineAskCollection.gtm_addRefreshHeaderView( delegate: askView)
-        onlineAskCollection.gtm_addLoadMoreFooterView(delegate: askView)
+        onlineAskCollection.gtm_addRefreshHeaderView(refreshBlock: {
+            self.askView.refresh()
+        })
+        onlineAskCollection.gtm_addLoadMoreFooterView(loadMoreBlock: {
+            self.askView.loadMore()
+        })
         
         let url = URL(string:SERVER_PORT + "../" + videoInfo["url"].stringValue)
         

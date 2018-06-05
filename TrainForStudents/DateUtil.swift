@@ -22,7 +22,7 @@ class DateUtil{
     ///自定义pattern
     static func formatString(_ dateStr:String,pattern:String) ->Date{
         do{
-            return try dateStr.date(format: DateFormat.custom(pattern)).absoluteDate
+            return try dateStr.date(format: DateFormat.custom(pattern))!.absoluteDate
         }catch{
             print("格式化日期异常...")
         }
@@ -32,7 +32,7 @@ class DateUtil{
     ///格式化符合yyyy-MM-dd格式的字符串
     static func stringToDate(_ dateStr:String) -> Date{
         do{
-            return try dateStr.date(format: DateFormat.custom(datePattern)).absoluteDate
+            return try dateStr.date(format: DateFormat.custom(datePattern))!.absoluteDate
         }catch{
             print("格式化日期异常...")
         }
@@ -42,7 +42,7 @@ class DateUtil{
     ///格式化符合yyyy-MM-dd HH:mm:ss格式的字符串
     static func stringToDateTime(_ dateTimeStr:String) -> Date{
         do{
-            return try dateTimeStr.date(format: DateFormat.custom(dateTimePattern)).absoluteDate
+            return try dateTimeStr.date(format: DateFormat.custom(dateTimePattern))!.absoluteDate
         }catch{
             print("格式化日期异常...")
         }

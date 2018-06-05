@@ -133,6 +133,7 @@ class OverCollectionView: MyBaseCollectionView{
     public override func refresh() {
         initLimitPage()
         parentView?.searchParam = nil
+        parentView?.overCollection.endLoadMore(isNoMoreData: false)
         parentView?.getOverCollectionDatasource()
     }
     

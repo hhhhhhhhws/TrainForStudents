@@ -25,6 +25,8 @@ class AssistantController: MyBaseUIViewController {
     
     @IBOutlet weak var btn_uploadImage: UIButton!
     
+    @IBOutlet weak var showImageView: UIView!
+    
     //按钮的集合
     var buttonGroup = [UIButton]()
     let assistantView = AssistantCollectionView()
@@ -77,11 +79,17 @@ class AssistantController: MyBaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        showImageView.isHidden = true
+        
     }
     
     @IBAction func btn_back_inside(_ sender: UIButton) {
         timer.invalidate()
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func btn_showImageCancel_inside(_ sender: UIButton) {
+        showImageView.isHidden = true
     }
     
     //资料上传 的图片提交
@@ -91,7 +99,7 @@ class AssistantController: MyBaseUIViewController {
             myAlert(self, message: "请选择上传的图片!")
             return
         }
-        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         let url = SERVER_PORT + "rest/task/taskResultImgAdd.do"
         let txt = uploadImageView.viewWithTag(10001) as! UITextView
         var param = [String:Any]()
@@ -110,15 +118,20 @@ class AssistantController: MyBaseUIViewController {
                 
                 let json = JSON(responseJson)
                 if json["code"].stringValue == "1"{
+                    MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
                     myAlert(self, message: "资料上传成功!" , handler : { action in
+                        self.imageUpload.images = [UIImage]()
+                        self.tbl_imageUpload.reloadData()
                         self.getImages()
                     })
                     
                 }else{
+                    MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
                     myAlert(self, message: "资料上传失败!\(json["msg"].stringValue)")
                 }
                 
             case .failure(let error):
+                MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
                 print(error)
             }
         })
@@ -181,13 +194,13 @@ class AssistantController: MyBaseUIViewController {
     
     //请求资料的图片
     func getImages(){
-        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         let url = SERVER_PORT + "rest/task/queryTaskResultUpload.do"
         myPostRequest(url,["taskid":taskId]).responseJSON(completionHandler: {resp in
             
             switch resp.result{
             case .success(let responseJson):
-                
+                MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
                 let json = JSON(responseJson)
                 if json["code"].stringValue == "1"{
                     
@@ -201,6 +214,7 @@ class AssistantController: MyBaseUIViewController {
                     myAlert(self, message: "获取上传的资料图片失败!")
                 }
             case .failure(let error):
+                MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
                 print(error)
             }
             

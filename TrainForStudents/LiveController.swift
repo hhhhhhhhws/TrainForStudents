@@ -55,21 +55,21 @@ class LiveController : MyBaseUIViewController,PLPlayerDelegate {
     }
     
     func createView(){
-        
+
         //rtmp://live.hkstv.hk.lxdns.com/live/hks
         //初始化 PLPlayerOption 对象 可以更改需要修改的 option 属性键所对应的值
         let option = PLPlayerOption.default()
         option.setOptionValue(15, forKey: PLPlayerOptionKeyTimeoutIntervalForMediaPackets)
-        
+
         //let url:URL = URL.init(string: "rtmp://live.hkstv.hk.lxdns.com/live/hks")!
         //初始化 PLPlayer
         player = PLPlayer.init(url: streamURL, option: option)!
         player.launchView?.image = UIImage.init(named: "backImage")
         player.delegate = self
         player.isBackgroundPlayEnable = false
-        
+
         //self.player.delegateQueue = DispatchQoS.default
-        
+
         try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         //获取视频输出视图并添加为到当前 UIView 对象的 Subview
         view.addSubview(player.playerView!)
@@ -88,7 +88,7 @@ class LiveController : MyBaseUIViewController,PLPlayerDelegate {
         button.snp.makeConstraints({ make in
             make.height.width.equalTo(player.playerView!)
         })
-        
+
         back = UIButton.init(type: .custom)
         back.frame = CGRect(x: 10, y: 25, width: 40, height: 20)
         back.setTitle("返回", for: .normal)
@@ -96,9 +96,9 @@ class LiveController : MyBaseUIViewController,PLPlayerDelegate {
         back.alpha = 0.7
         back.addTarget(self, action: #selector(btn_back_event(button:)), for: .touchUpInside)
         view.addSubview(back)
-        
+
         player.play()
-        
+
     }
     
     func buttonclick(button:UIButton)  {

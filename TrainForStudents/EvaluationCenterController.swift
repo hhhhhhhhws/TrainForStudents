@@ -70,16 +70,24 @@ class EvaluationCenterController : MyBaseUIViewController , UIScrollViewDelegate
         examView.parentView = self
         examCollection.delegate = examView
         examCollection.dataSource = examView
-        examCollection.gtm_addRefreshHeaderView(delegate: examView)
-        examCollection.gtm_addLoadMoreFooterView(delegate: examView)
+        examCollection.gtm_addRefreshHeaderView(refreshBlock: {
+            self.examView.refresh()
+        })
+        examCollection.gtm_addLoadMoreFooterView(loadMoreBlock: {
+            self.examView.loadMore()
+        })
         examCollection.registerNoDataCellView()
         
         //待评collection
         evaluationView.parentView = self
         evaluationCollection.delegate = evaluationView
         evaluationCollection.dataSource = evaluationView
-        evaluationCollection.gtm_addRefreshHeaderView(delegate: evaluationView)
-        evaluationCollection.gtm_addLoadMoreFooterView(delegate: evaluationView)
+        evaluationCollection.gtm_addRefreshHeaderView(refreshBlock: {
+            self.evaluationView.refresh()
+        })
+        evaluationCollection.gtm_addLoadMoreFooterView(loadMoreBlock: {
+            self.evaluationView.loadMore()
+        })
         evaluationCollection.registerNoDataCellView()
         evaluationCollection.frame.origin = CGPoint(x: UIScreen.width, y: evaluationCollection.frame.origin.y)
         
@@ -106,6 +114,11 @@ class EvaluationCenterController : MyBaseUIViewController , UIScrollViewDelegate
         buttonGroup = [btn_exam , btn_evaluation]
         btn_exam.restorationIdentifier = "btn_exam"
         
+        examView.initLimitPage()
+        evaluationView.initLimitPage()
+        getExamDatasource()
+        getEvaluationDatasource()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,10 +128,7 @@ class EvaluationCenterController : MyBaseUIViewController , UIScrollViewDelegate
         super.viewWillAppear(true)
         buttonView.isHidden = true
         btn_btnList.tag = 0
-        examView.initLimitPage()
-        evaluationView.initLimitPage()
-        getExamDatasource()
-        getEvaluationDatasource()
+        
     }
     
     //右上角 + 按钮
@@ -244,6 +254,7 @@ class EvaluationCenterController : MyBaseUIViewController , UIScrollViewDelegate
     func getExamDatasource(){
         
         if examView.isLastPage{
+            examCollection.endLoadMore(isNoMoreData:true)
             return
         }
         
@@ -287,6 +298,7 @@ class EvaluationCenterController : MyBaseUIViewController , UIScrollViewDelegate
     func getEvaluationDatasource(){
         
         if evaluationView.isLastPage{
+            evaluationCollection.endLoadMore(isNoMoreData:true)
             return
         }
         

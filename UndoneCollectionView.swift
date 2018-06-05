@@ -220,6 +220,7 @@ class UndoneCollectionView: MyBaseCollectionView{
     public override func refresh() {
         parentView?.searchParam = nil
         initLimitPage()
+        parentView?.undoneCollection.endLoadMore(isNoMoreData: false)
         parentView?.getUndoneCollectionDatasource()
     }
     

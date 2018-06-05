@@ -43,8 +43,12 @@ class TurnDetailController : MyBaseUIViewController{
         
         ttc.parentView = self
         ttc.isFirstLoad = true
-        completedTasksCollection.gtm_addRefreshHeaderView(delegate: self)
-        completedTasksCollection.gtm_addLoadMoreFooterView(delegate: self)
+        completedTasksCollection.gtm_addRefreshHeaderView(refreshBlock: {
+            self.refresh()
+        })
+        completedTasksCollection.gtm_addLoadMoreFooterView(loadMoreBlock: {
+            self.loadMore()
+        })
         completedTasksCollection.dataSource = ttc
         completedTasksCollection.delegate = ttc
         

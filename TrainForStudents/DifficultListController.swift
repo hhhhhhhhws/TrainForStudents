@@ -39,15 +39,23 @@ class DifficultListController: MyBaseUIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mineCollection.gtm_addRefreshHeaderView(delegate: mineView)
-        mineCollection.gtm_addLoadMoreFooterView(delegate: mineView)
+        mineCollection.gtm_addRefreshHeaderView(refreshBlock: {
+            self.mineView.refresh()
+        })
+        mineCollection.gtm_addLoadMoreFooterView(loadMoreBlock: {
+            self.mineView.loadMore()
+        })
         mineCollection.delegate = mineView
         mineCollection.dataSource = mineView
         mineView.parentView = self
         mineView.isMine = true
         
-        officeCollection.gtm_addRefreshHeaderView(delegate: officeView)
-        officeCollection.gtm_addLoadMoreFooterView(delegate: officeView)
+        officeCollection.gtm_addRefreshHeaderView(refreshBlock: {
+            self.officeView.refresh()
+        })
+        officeCollection.gtm_addLoadMoreFooterView(loadMoreBlock: {
+            self.officeView.loadMore()
+        })
         officeCollection.delegate = officeView
         officeCollection.dataSource = officeView
         officeView.parentView = self

@@ -11,7 +11,9 @@ import UIKit
 import SwiftyJSON
 import GTMRefresh
 
-class MyBaseCollectionView : UIViewController,  UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout , GTMRefreshHeaderDelegate , GTMLoadMoreFooterDelegate{
+typealias headerRefresh = () -> Void
+typealias loadMore = () -> Void
+class MyBaseCollectionView : UIViewController,  UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
     
     var jsonDataSource = [JSON]()
     var showNoDataCell = false
@@ -58,7 +60,7 @@ class MyBaseCollectionView : UIViewController,  UICollectionViewDelegate , UICol
     
     
     
-    public func refresh() {
+    func refresh() {
         
     }
     

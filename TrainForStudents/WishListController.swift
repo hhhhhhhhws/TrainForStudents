@@ -28,8 +28,12 @@ class WishListController: MyBaseUIViewController {
         wishCollection.registerNoDataCellView()
         wishCollection.delegate = wishView
         wishCollection.dataSource = wishView
-        wishCollection.gtm_addRefreshHeaderView(delegate: wishView)
-        wishCollection.gtm_addLoadMoreFooterView(delegate: wishView)
+        wishCollection.gtm_addRefreshHeaderView(refreshBlock: {
+            self.wishView.refresh()
+        })
+        wishCollection.gtm_addLoadMoreFooterView(loadMoreBlock: {
+            self.wishView.loadMore()
+        })
         
         
     }

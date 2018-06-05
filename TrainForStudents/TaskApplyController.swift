@@ -120,12 +120,13 @@ class TaskApplyController: MyBaseUIViewController , UIPickerViewDataSource , UIP
         for img in imageCollectionView.images{
             imgDir[arc4random().description] = img
         }
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         //禁用按钮 防止重复提交
         sender.isEnabled = false
         uploadImage(url, images: imgDir, parameters: param, completionHandler: {resp in
             switch resp.result{
             case .success(let responseJson):
-                
+                MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
                 let json = JSON(responseJson)
                 if json["code"].stringValue == "1"{
                     myAlert(self, message: "提交申请成功!" , handler : { action in
@@ -139,6 +140,7 @@ class TaskApplyController: MyBaseUIViewController , UIPickerViewDataSource , UIP
                 }
                 
             case .failure(let error):
+                MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
                 print(error)
             }
             sender.isEnabled = true

@@ -24,8 +24,12 @@ class TaskApplyListController: MyBaseUIViewController {
         
         super.setNavigationBarColor(views: [barView,titleView], titleIndex: 1,titleText: "任务申请列表")
         
-        taskApplyCollection.gtm_addRefreshHeaderView(delegate: taskApplyView)
-        taskApplyCollection.gtm_addLoadMoreFooterView(delegate: taskApplyView)
+        taskApplyCollection.gtm_addRefreshHeaderView(refreshBlock: {
+            self.taskApplyView.refresh()
+        })
+        taskApplyCollection.gtm_addLoadMoreFooterView(loadMoreBlock: {
+            self.taskApplyView.loadMore()
+        })
         taskApplyView.parentView = self
         taskApplyCollection.delegate = taskApplyView
         taskApplyCollection.dataSource = taskApplyView

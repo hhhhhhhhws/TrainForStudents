@@ -137,8 +137,8 @@ class LoginViewController : MyBaseUIViewController, UIPickerViewDataSource , UIP
             //存app本地
             UserDefaults.standard.set(server_port, forKey: LoginInfo.server_port.rawValue)
             UserDefaults.standard.set(portal_port, forKey: LoginInfo.portal_port.rawValue)
-            UserDefaults.standard.set(txt_loginId.text!, forKey: LoginInfo.loginId.rawValue)
-            UserDefaults.standard.set(txt_password.text!, forKey: LoginInfo.password.rawValue)
+            //UserDefaults.standard.set(txt_loginId.text!, forKey: LoginInfo.loginId.rawValue)
+            //UserDefaults.standard.set(txt_password.text!, forKey: LoginInfo.password.rawValue)
             UserDefaults.standard.set(txt_hospital.text!, forKey: LoginInfo.hospital.rawValue)
             
             SERVER_PORT = server_port
@@ -203,10 +203,16 @@ class LoginViewController : MyBaseUIViewController, UIPickerViewDataSource , UIP
                     let token = json["token"].stringValue
                     r_token = token
                     UserDefaults.standard.set(token, forKey: LoginInfo.token.rawValue)
-                    UserDefaults.standard.set(self.txt_loginId.text!, forKey:
-                        LoginInfo.loginId.rawValue)
-                    let cacheAnswersDic = [String : [String : Dictionary<String, String>]]()
-                    UserDefaults.Exam.set(value: cacheAnswersDic, forKey: .answerDic)
+                    
+                    //如果本次登录账号和上次登录账号不一样 则清除缓存的考试数据并修改本地缓存
+                    let preLoginId = UserDefaults.standard.string(forKey: LoginInfo.loginId.rawValue)
+                    if preLoginId != self.txt_loginId.text!{
+                        let cacheAnswersDic = [String : [String : Dictionary<String, String>]]()
+                        UserDefaults.Exam.set(value: cacheAnswersDic, forKey: .answerDic)
+                        UserDefaults.standard.set(self.txt_loginId.text!, forKey:
+                            LoginInfo.loginId.rawValue)
+                    }
+                    
                     //注册极光推送别名
                     JPUSHService.setAlias(json["userkey"].stringValue, callbackSelector: nil, object: 0)
                     //print("极光推送注册的别名:\(json["userkey"].stringValue)")

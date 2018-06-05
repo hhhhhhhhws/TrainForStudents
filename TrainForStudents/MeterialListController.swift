@@ -23,8 +23,12 @@ class MeterialListController : MyBaseUIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        meterialCollection.gtm_addRefreshHeaderView(delegate: meterialView)
-        meterialCollection.gtm_addLoadMoreFooterView(delegate: meterialView)
+        meterialCollection.gtm_addRefreshHeaderView(refreshBlock: {
+            self.meterialView.refresh()
+        })
+        meterialCollection.gtm_addLoadMoreFooterView(loadMoreBlock: {
+            self.meterialView.loadMore()
+        })
         meterialCollection.delegate = meterialView
         meterialCollection.dataSource = meterialView
         meterialView.parentView = self

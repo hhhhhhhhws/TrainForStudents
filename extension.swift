@@ -13,7 +13,7 @@ import UIKit
 import SwiftyJSON
 
 
-let CLOUD_SERVER = "http://120.77.181.22:8080/cloud_doctor_train/"
+let CLOUD_SERVER = "http://www.jiuhuatech.com:6023/cloud_doctor_train/"
 var SERVER_PORT = "http://192.168.1.108:8070/doctor_train/"
 var PORTAL_PORT = "http://120.77.181.22:8080/doctor_portal/"
 //let PORTAL_URL = "http://192.168.1.106:8080/doctor_portal/"

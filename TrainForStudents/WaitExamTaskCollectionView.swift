@@ -63,6 +63,7 @@ class WaitExamTaskCollectionView : MyBaseCollectionView{
     public override func refresh() {
         initLimitPage()
         parentView?.getExamDatasource()
+        parentView?.examCollection.endLoadMore(isNoMoreData:false)
     }
     
     override func loadMore() {

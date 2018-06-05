@@ -9,7 +9,7 @@
 import UIKit
 import GTMRefresh
 
-class MyBaseUIViewController : UIViewController , UITextFieldDelegate {
+class MyBaseUIViewController : UIViewController , UITextFieldDelegate  {
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let loadingDialog = UIAlertController(title: "", message: "加载中,请稍后...", preferredStyle: .alert)
@@ -32,6 +32,7 @@ class MyBaseUIViewController : UIViewController , UITextFieldDelegate {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.color = UIColor.black
         loadingDialog.view.addSubview(activityIndicator)
+        
         
     }
     
@@ -122,7 +123,7 @@ class MyBaseUIViewController : UIViewController , UITextFieldDelegate {
 }
 
 //对上拉 下拉刷新的支持
-extension MyBaseUIViewController : GTMRefreshHeaderDelegate , GTMLoadMoreFooterDelegate{
+extension MyBaseUIViewController {
     
     public func refresh() {
         

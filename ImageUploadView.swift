@@ -17,8 +17,9 @@ class ImageUploadView :UIViewController , UITableViewDelegate , UITableViewDataS
     var parentView : AssistantController? = nil
     var images = [UIImage]()
     var willUploadImagesIndex = [Int]()
-    let uploadImageMaxLenth = 1024*5 //kb
+    let uploadImageMaxLenth = 1024*50 //kb
     var uploadImages = [String : UIImage]()
+    var btnInitFrame : CGRect? = nil
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return jsonDataSource.count + 1
@@ -38,6 +39,9 @@ class ImageUploadView :UIViewController , UITableViewDelegate , UITableViewDataS
             let cell = (parentView?.tbl_imageUpload.dequeueReusableCell(withIdentifier: cellName))!
             cell.selectionStyle = .none
             let btn = cell.viewWithTag(10001) as! UIButton
+            if btnInitFrame == nil{
+                btnInitFrame = btn.frame
+            }
             btn.addTarget(self, action: #selector(selectImage), for: .touchUpInside)
             
             //
@@ -52,12 +56,25 @@ class ImageUploadView :UIViewController , UITableViewDelegate , UITableViewDataS
             let prefix = CGFloat(15)
             var index = CGFloat(0)
             for image in images{
-                let imageView = UIImageView(frame: btn.frame)
+//                let imageView = UIImageView(frame: btn.frame)
+//                imageView.frame.origin = CGPoint(x: space.adding(btnWidth).multiplied(by: index).adding(prefix), y: btn.frame.origin.y)
+//                imageView.image = image
+//                cell.addSubview(imageView)
+//                btn.frame.origin  = CGPoint(x: space.adding(btnWidth).multiplied(by: index.adding(1)).adding(prefix), y: btn.frame.origin.y)
+//                index.add(1)
+                
+                let imageView = UIButton(frame: btn.frame)
                 imageView.frame.origin = CGPoint(x: space.adding(btnWidth).multiplied(by: index).adding(prefix), y: btn.frame.origin.y)
-                imageView.image = image
+                imageView.setImage(image, for: .normal)
                 cell.addSubview(imageView)
                 btn.frame.origin  = CGPoint(x: space.adding(btnWidth).multiplied(by: index.adding(1)).adding(prefix), y: btn.frame.origin.y)
+                imageView.addTarget(self, action: #selector(btn_image_inside), for: .touchUpInside)
                 index.add(1)
+                
+            }
+            
+            if index == 0{
+                btn.frame = btnInitFrame!
             }
             
             return cell
@@ -74,18 +91,23 @@ class ImageUploadView :UIViewController , UITableViewDelegate , UITableViewDataS
             lbl.text = data["personname"].stringValue
             
             var tag = 20001
+            var tag2 = 20011
             for url in data["url"].arrayValue{
                 let imageView = cell.viewWithTag(tag) as! UIImageView
+                let btn = cell.viewWithTag(tag2) as! UIButton
                 do{
-                    try imageView.image = UIImage(data: Data.init(contentsOf: URL(string: url.stringValue)!))!
+                    let image = try UIImage(data: Data.init(contentsOf: URL(string: url.stringValue)!))!
+                    imageView.image = image
+                    btn.setImage(image, for: .normal)
+                    btn.setTitle("", for: .normal)
+                    btn.isHidden = false
+                    btn.addTarget(self, action: #selector(btn_image_inside), for: .touchUpInside)
                 }catch{}
                 tag += 1
+                tag2 += 1
             }
             return cell
         }
-        
-        
-        
         
     }
     
@@ -149,10 +171,10 @@ class ImageUploadView :UIViewController , UITableViewDelegate , UITableViewDataS
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        var image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
-        let after = image.compressImage(image, maxLength: uploadImageMaxLenth)
-        image = UIImage(data: after!)!
+//        let after = image.compressImage(image, maxLength: uploadImageMaxLenth)
+//        image = UIImage(data: after!)!
         
         //添加图片到数据源
         images.append(image)
@@ -160,6 +182,52 @@ class ImageUploadView :UIViewController , UITableViewDelegate , UITableViewDataS
         willUploadImagesIndex.append(images.count-1)
         parentView?.dismiss(animated: true, completion: nil)
         parentView?.tbl_imageUpload.reloadData()
+    }
+    
+    func btn_image_inside(sender: UIButton){
+        let iv = parentView?.showImageView.viewWithTag(10001) as! UIImageView
+        iv.image = sender.imageView?.image
+//        iv.frame = setFrame(frame: iv.frame,image: (sender.imageView?.image)!)
+        parentView?.showImageView.isHidden = false
+    }
+    
+    private func setFrame(frame: CGRect, image: UIImage) -> CGRect{
+        
+        // 判断图片的尺寸是不是小于imageView的尺寸
+        // 如果图片的尺寸小于imageView的尺寸，将图片的尺寸做为imageView的尺寸
+        // 如果图片的尺寸大于imageView的尺寸：
+        // 1、 图片宽与高的比例 scale = width / height
+        // 2、 对比图片宽与高的大小，判断是宽大于高，还是高大于宽;
+        // 3、 如果宽大于高，则需要设置imageView的高，根据图片宽高比scale求imageView得高;
+        //     如果高大于宽，则需要设置imageView的宽，根据图片宽高比scale求imageView的宽;
+        // 注： imageView.contentMode = .ScaleAspectFit
+        
+        var _frame: CGRect = CGRect()
+        
+        if image.size.width < (parentView?.showImageView.frame.width)! && image.size.height < (parentView?.showImageView.frame.height)! {
+            
+            _frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: image.size.width, height: image.size.height)
+        } else if image.size.width > (parentView?.showImageView.frame.width)! && image.size.height > (parentView?.showImageView.frame.height)!{
+            
+            // 图片宽与高的比例
+            let scaleWH: CGFloat = image.size.width / image.size.height
+            
+            // 对比图片宽与高的大小， 宽>高
+            if image.size.width > image.size.height {
+                
+                // 根据图片宽高比scale求imageView得高
+                let imageViewHeight: CGFloat = (parentView?.showImageView.frame.width)! / scaleWH
+                // 设置frame
+                _frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: imageViewHeight)
+                
+            }else if image.size.width < image.size.height {
+                
+                let imageViewWidth: CGFloat = (parentView?.showImageView.frame.height)! * scaleWH
+                _frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: imageViewWidth, height: frame.size.width)
+            }
+        }
+        
+        return _frame
     }
     
 }

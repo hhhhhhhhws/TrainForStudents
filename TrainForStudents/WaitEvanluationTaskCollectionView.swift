@@ -53,6 +53,7 @@ class WaitEvanluationTaskCollectionView : MyBaseCollectionView{
     public override func refresh() {
         initLimitPage()
         parentView?.getEvaluationDatasource()
+        parentView?.evaluationCollection.endLoadMore(isNoMoreData:false)
     }
     
     override func loadMore() {

@@ -34,7 +34,9 @@ class MyselfController: MyBaseUIViewController {
         selfView.parentView = self
         selfCollection.delegate = selfView
         selfCollection.dataSource = selfView
-        selfCollection.gtm_addRefreshHeaderView(delegate: self)
+        selfCollection.gtm_addRefreshHeaderView(refreshBlock: {
+            self.refresh()
+        })
         
     }
     
@@ -51,8 +53,6 @@ class MyselfController: MyBaseUIViewController {
     @IBAction func btn_settings_inside(_ sender: UIButton) {
         myPresentView(self, viewName: "settingsView")
     }
-    
-        
     
     @IBAction func btn_myQRCancel_inside(_ sender: UIButton) {
         showImageView.isHidden = true

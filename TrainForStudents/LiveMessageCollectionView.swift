@@ -98,7 +98,7 @@ class LiveMessageCollectionView : MyBaseCollectionView {
         if cellHeight < 60{
             cellHeight = 60
         }
-        print("cellHeight:\(cellHeight)")
+//        print("cellHeight:\(cellHeight)")
         return CGSize(width: UIScreen.width, height: cellHeight)
         
     }
