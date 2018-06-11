@@ -99,11 +99,11 @@ class OtherFilesController: MyBaseUIViewController,UITableViewDataSource,UITable
             //两个参数表示如果有同名文件则会覆盖，如果路径中文件夹不存在则会自动创建
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
-        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         //开始下载
-        Alamofire.download(dataSource[indexPath.section]["url"].stringValue, to: destination)
+        Alamofire.download(dataSource[indexPath.section]["urlstr"].stringValue, to: destination)
             .response { response in
-                print(response)
+                //print(response)
                 let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                 let fileURL = documentsURL.appendingPathComponent(self.dataSource[indexPath.section]["reffilename"].stringValue)
                 self.openFile(fileURL)

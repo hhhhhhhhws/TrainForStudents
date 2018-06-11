@@ -19,6 +19,7 @@ class CheckboxCollectionView : BasePeiwuCollectionView{
         var cell = UICollectionViewCell.init()
         let a = jsonDataSource["answers"].arrayValue
         var data = JSON.init("")
+        let answerDic = parentView?.answerDic[jsonDataSource["questionsid"].stringValue]
         if 0 == indexPath.item{
             let cellName = "c1"
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellName, for: indexPath)
@@ -26,7 +27,10 @@ class CheckboxCollectionView : BasePeiwuCollectionView{
             data = jsonDataSource
             //渲染问题
             let lbl = (cell.viewWithTag(10001) as? UILabel)!
-            let title = data["indexname"].stringValue + " " + data["title"].stringValue
+            var title = data["indexname"].stringValue + " " + data["title"].stringValue
+            if answerDic != nil{
+                title += answerDic!["inputanswer"]!
+            }
             lbl.text = title
             
             lbl.numberOfLines = title.getLineNumberForWidth(width: lbl.frame.width - boundary, cFont: (lbl.font)!)
@@ -37,9 +41,8 @@ class CheckboxCollectionView : BasePeiwuCollectionView{
             cell.tag = 0
             //获取数据
             data = a[indexPath.item - 1]
-            let answerDic = parentView?.answerDic[data["questionid"].stringValue]
             var inputAnswers = [""]
-            
+//            let answerDic = parentView?.answerDic[data["questionid"].stringValue]
             //渲染选项
             let btn = (cell.viewWithTag(10001) as? UIButton)!
             btn.layer.cornerRadius = btn.frame.width / 2
@@ -65,6 +68,7 @@ class CheckboxCollectionView : BasePeiwuCollectionView{
                 if btn.currentTitle == ia{
                     btn.setTitleColor(UIColor.white, for: .normal)
                     btn.backgroundColor = UIColor.init(hex: "ffc84c")
+                    cell.tag = 1
                     break
                 }else{
                     btn.setTitleColor(UIColor.init(hex: "5ea3f3"), for: .normal)

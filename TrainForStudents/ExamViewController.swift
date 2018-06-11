@@ -82,7 +82,6 @@ class ExamViewController : MyBaseUIViewController{
             
         }
         
-        
         currentType = exercises[typeIndex]
         
         //初始化题型标题
@@ -99,7 +98,6 @@ class ExamViewController : MyBaseUIViewController{
         initCollection()
         
     }
-    
     
     
     ///返回按钮
@@ -161,7 +159,7 @@ class ExamViewController : MyBaseUIViewController{
             for sbq in curQuestion["sub_questions"].arrayValue {
                 let qid = sbq["questionsid"].stringValue
                 let a = answerDic[qid]
-                if a == nil || (a!["inputanswer"] != nil){
+                if a == nil || (a!["inputanswer"] == nil){
                     isComplete = false
                     isAnswered(qid: qid,quesionJson: curQuestion,initAnswer: a == nil)
                 }
@@ -230,16 +228,62 @@ class ExamViewController : MyBaseUIViewController{
     //完成
     @IBAction func btn_complete_inside(_ sender: UIButton) {
         
-        hiddenKeyBoard()
+        //判断当前题目是否已全部作答
+        var isComplete = true
+        let curQuestion = questionView.jsonDataSource
+        let qType = curQuestion["type"].intValue
+        if qType == 3 {    //配伍题
+            for sbq in curQuestion["sub_questions"].arrayValue {
+                let qid = sbq["questionsid"].stringValue
+                let a = answerDic[qid]
+                if a == nil || (a!["inputanswer"] != nil){
+                    isComplete = false
+                    isAnswered(qid: qid,quesionJson: curQuestion,initAnswer: a == nil)
+                }
+            }
+        }else{
+            let qid = curQuestion["questionsid"].stringValue
+            if(qType == 5){   //填空题
+                let a = answerDic[qid]
+                let qid = curQuestion["questionsid"].stringValue
+                if a == nil {
+                    isComplete = false
+                    isAnswered(qid: qid,quesionJson: curQuestion)
+                }else{
+                    let inputanswer = a!["inputanswer"]
+                    let sbStr = inputanswer?.split(separator: ",")
+                    for str in sbStr! { //根据填空题答案的格式来判断是否完成题目
+                        if str == "" || str == " "{
+                            isComplete = false
+                            isAnswered(qid: qid,quesionJson: curQuestion,initAnswer: false)
+                        }
+                    }
+                    
+                }
+            }else{  //其余题型
+                let qid = curQuestion["questionsid"].stringValue
+                let a = answerDic[qid]
+                if a == nil || a!["inputanswer"] == nil || a!["inputanswer"] == ""{
+                    isComplete = false
+                    isAnswered(qid: qid,quesionJson: curQuestion)
+                }
+            }
+            
+        }
         
-        myConfirm(self, message:"是否确认提交试卷?" ,
-                  okHandler:{action in
+        if isComplete{
             
-            self.submitAnswer()
+            hiddenKeyBoard()
             
-        } , cancelHandler:{action in
-            
-        })
+            myConfirm(self, message:"是否确认提交试卷?" ,
+                      okHandler:{action in
+                        
+                        self.submitAnswer()
+                        
+            } , cancelHandler:{action in
+                
+            })
+        }
         
         
     }

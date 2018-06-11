@@ -29,7 +29,7 @@ class RadioCollectionView : PeiwuCollectionView{
             let lbl = (cell.viewWithTag(10001) as? UILabel)!
             var title = data["indexname"].stringValue + " " + data["title"].stringValue
             lbl.text = title
-            
+
             //计算出需要的行数后在多加一行防止一些空格和符号显示不全
             lbl.numberOfLines = title.getLineNumberForWidth(width: lbl.frame.width - boundary, cFont: (lbl.font)!) + 1
             lbl.frame.size = CGSize(width: lbl.frame.size.width, height: getHeightForLabel(lbl: lbl))
@@ -50,6 +50,7 @@ class RadioCollectionView : PeiwuCollectionView{
         }else{
             let cellName = "c2"
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellName, for: indexPath)
+            //cell.backgroundColor = UIColor.red
             cell.tag = 0
             //获取数据
             data = a[indexPath.item - 1]
@@ -67,6 +68,7 @@ class RadioCollectionView : PeiwuCollectionView{
             let lbl = (cell.viewWithTag(10002) as? UILabel)!
             let title = data["answervalue"].stringValue
             lbl.text = title
+            //lbl.backgroundColor = UIColor.green
             lbl.numberOfLines = title.getLineNumberForWidth(width: lbl.frame.width - boundary, cFont: (lbl.font)!)
             var y = lbl.frame.origin.y
             if lbl.numberOfLines >= 2{
