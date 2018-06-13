@@ -388,7 +388,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TrainForStudents/CheckboxCollectionView.swift"
-            timestampString = "550404173.51669"
+            timestampString = "550564443.260627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
@@ -436,12 +436,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TrainForStudents/ExamViewController.swift"
-            timestampString = "550404173.516775"
+            timestampString = "550573116.649093"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "btn_next_inside(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TrainForStudents/PeiwuCollectionView.swift"
+            timestampString = "550572375.736871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

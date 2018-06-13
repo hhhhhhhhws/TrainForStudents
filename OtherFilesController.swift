@@ -111,6 +111,7 @@ class OtherFilesController: MyBaseUIViewController,UITableViewDataSource,UITable
     }
     
     func openFile(_ filePath: URL) {
+        MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
         let _docController = UIDocumentInteractionController.init(url: filePath)
         _docController.delegate = self
 //        _docController.presentOpenInMenu(from: self.view.frame, in: self.view, animated: true)

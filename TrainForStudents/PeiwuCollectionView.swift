@@ -73,10 +73,11 @@ class PeiwuCollectionView : QuestionCollectionView {
             let title = data["answervalue"].stringValue
             lbl.text = title
             lbl.numberOfLines = title.getLineNumberForWidth(width: lbl.frame.width - boundary, cFont: (lbl.font)!)
-            var y = lbl.frame.origin.y
-            if lbl.numberOfLines >= 2{
-                y = btn.frame.origin.y
-            }
+            let y = btn.frame.origin.y.adding(4)
+//            var y = lbl.frame.origin.y
+//            if lbl.numberOfLines >= 2{
+//                y = btn.frame.origin.y
+//            }
             lbl.frame.origin = CGPoint(x: lbl.frame.origin.x, y: y)
             lbl.frame.size = CGSize(width: lbl.frame.size.width, height: getHeightForLabel(lbl: lbl))
             
@@ -164,7 +165,7 @@ class PeiwuCollectionView : QuestionCollectionView {
 //            }
             
 //            print("after  selectedIndex:\(selectedIndex)  cell:\(indexPath)")
-//            print("----------------------------------------------------")
+//            print("----------------------------------------------------") 
             
             //记录被选中的题目
             selectedIndex = indexPath
