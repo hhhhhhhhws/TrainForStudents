@@ -26,14 +26,20 @@ class HistoryExamCollectionView : MyBaseCollectionView{
         let json = jsonDataSource[indexPath.item]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellName, for: indexPath)
         
-        var lbl = cell.viewWithTag(10001) as? UILabel
-        lbl?.text = json["tasktitle"].stringValue
-        lbl = cell.viewWithTag(10002) as? UILabel
-        lbl?.text = json["ispassshow"].stringValue
-        lbl = cell.viewWithTag(20001) as? UILabel
-        lbl?.text = "考试时间  \(json["starttime"].stringValue)"
-        lbl = cell.viewWithTag(20002) as? UILabel
-        lbl?.text = "\(json["exercisesscore"].intValue)"
+        var lbl = cell.viewWithTag(10001) as! UILabel
+        let title = json["tasktitle"].stringValue
+        lbl.text = title
+        
+        lbl.numberOfLines = title.getLineNumberForWidth(width: lbl.frame.width, cFont: (lbl.font)!)
+        lbl.frame.size = CGSize(width: lbl.frame.size.width, height: CGFloat(lbl.numberOfLines * 21))
+        
+        
+        lbl = cell.viewWithTag(10002) as! UILabel
+        lbl.text = json["ispassshow"].stringValue
+        lbl = cell.viewWithTag(20001) as! UILabel
+        lbl.text = "考试时间  \(json["starttime"].stringValue)"
+        lbl = cell.viewWithTag(20002) as! UILabel
+        lbl.text = "\(json["exercisesscore"].intValue)"
         
         return cell
         
@@ -42,7 +48,13 @@ class HistoryExamCollectionView : MyBaseCollectionView{
     //设置cell的大小
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: UIScreen.width, height: 85)
+        
+        let json = jsonDataSource[indexPath.item]
+        let lblWidth = UIScreen.width.subtracting(100)
+        let title = json["tasktitle"].stringValue
+        let lineNumber = title.getLineNumberForWidth(width: lblWidth, cFont: UIFont.systemFont(ofSize: 17))
+        let cHeight = 85 + (lineNumber - 1) * 25
+        return CGSize(width: UIScreen.width, height: CGFloat(cHeight))
         
     }
     

@@ -138,7 +138,8 @@ class MyselfCollectionView : UIViewController,  UICollectionViewDelegate , UICol
             break
         case 50004:
             //直播
-            myPresentView(parentView!, viewName: "liveListView")
+            myAlert(self, message: "暂未开放,敬请期待!")
+//            myPresentView(parentView!, viewName: "liveListView")
             break
         default:
             break
