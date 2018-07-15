@@ -17,7 +17,7 @@ class DateUtil{
     //默认日期格式化参数
     static let datePattern="yyyy-MM-dd"
     static let dateTimePattern="yyyy-MM-dd HH:mm:ss"
-    static let dateTimeSecondPattern="yyyy-MM-dd HH:mm:ss.s"
+    static let dateTimeSecondPattern="yyyy-MM-dd HH:mm:ss.s"     
     
     ///自定义pattern
     static func formatString(_ dateStr:String,pattern:String) ->Date{
